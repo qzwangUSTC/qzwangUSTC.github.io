@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>本博客搭建详细教程</title>
-      <link href="/posts/6.html"/>
-      <url>/posts/6.html</url>
+      <title>第一篇博客测试</title>
+      <link href="/posts/41570.html"/>
+      <url>/posts/41570.html</url>
       
-        <content type="html"><![CDATA[<h2 id="本博客详细教程地址："><a href="#本博客详细教程地址：" class="headerlink" title="本博客详细教程地址："></a>本博客详细教程地址：</h2><p>系列教程：</p><ul><li><a href="http://sitoi.cn/posts/6666.html">基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇</a></li><li><a href="https://sitoi.cn/posts/27801.html">基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇</a></li><li><a href="https://sitoi.cn/posts/63466.html">基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码</a></li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<p>今天我搭建了我的个人博客网站，我很开心。</p><h3 id="第一节"><a href="#第一节" class="headerlink" title="第一节"></a>第一节</h3><h3 id="第二节"><a href="#第二节" class="headerlink" title="第二节"></a>第二节</h3><p>$y=\sigma^{10}_{i=0}x^{i}$ </p><h3 id="第三节"><a href="#第三节" class="headerlink" title="第三节"></a>第三节</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F <span class="token keyword">import</span> totch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>optim <span class="token keyword">as</span> optim <span class="token keyword">print</span><span class="token punctuation">(</span>torch<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span> <span class="token keyword">class</span> <span class="token class-name">Net</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">pass</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       <categories>
@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> Blog </tag>
             
             <tag> GitHub </tag>
             

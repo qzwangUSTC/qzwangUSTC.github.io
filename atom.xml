@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://qzwangustc.github.io/"/>
-  <updated>2020-09-04T12:32:30.431Z</updated>
+  <updated>2020-09-05T08:23:36.129Z</updated>
   <id>https://qzwangustc.github.io/</id>
   
   <author>
@@ -17,21 +17,20 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>本博客搭建详细教程</title>
-    <link href="https://qzwangustc.github.io/posts/6.html"/>
-    <id>https://qzwangustc.github.io/posts/6.html</id>
-    <published>2019-12-27T12:02:34.000Z</published>
-    <updated>2020-09-04T12:32:30.431Z</updated>
+    <title>第一篇博客测试</title>
+    <link href="https://qzwangustc.github.io/posts/41570.html"/>
+    <id>https://qzwangustc.github.io/posts/41570.html</id>
+    <published>2020-09-05T07:52:00.000Z</published>
+    <updated>2020-09-05T08:23:36.129Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="本博客详细教程地址："><a href="#本博客详细教程地址：" class="headerlink" title="本博客详细教程地址："></a>本博客详细教程地址：</h2><p>系列教程：</p><ul><li><a href="http://sitoi.cn/posts/6666.html">基于 Hexo GitHub 从零开始搭建个人博客（一）：环境准备篇</a></li><li><a href="https://sitoi.cn/posts/27801.html">基于 Hexo GitHub 从零开始搭建个人博客（二）：搭建基础篇</a></li><li><a href="https://sitoi.cn/posts/63466.html">基于 Hexo GitHub 从零开始搭建个人博客（三）：Matery 主题（DIY 版）详细配置教程，附博客源码</a></li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    <content type="html"><![CDATA[<p>今天我搭建了我的个人博客网站，我很开心。</p><h3 id="第一节"><a href="#第一节" class="headerlink" title="第一节"></a>第一节</h3><h3 id="第二节"><a href="#第二节" class="headerlink" title="第二节"></a>第二节</h3><p>$y=\sigma^{10}_{i=0}x^{i}$ </p><h3 id="第三节"><a href="#第三节" class="headerlink" title="第三节"></a>第三节</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F <span class="token keyword">import</span> totch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>optim <span class="token keyword">as</span> optim <span class="token keyword">print</span><span class="token punctuation">(</span>torch<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span> <span class="token keyword">class</span> <span class="token class-name">Net</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">pass</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;本博客详细教程地址：&quot;&gt;&lt;a href=&quot;#本博客详细教程地址：&quot; class=&quot;headerlink&quot; title=&quot;本博客详细教程地址：&quot;&gt;&lt;/a&gt;本博客详细教程地址：&lt;/h2&gt;&lt;p&gt;系列教程：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://sit
+        &lt;p&gt;今天我搭建了我的个人博客网站，我很开心。&lt;/p&gt;
+&lt;h3 id=&quot;第一节&quot;&gt;&lt;a href=&quot;#第一节&quot; class=&quot;headerlink&quot; title=&quot;第一节&quot;&gt;&lt;/a&gt;第一节&lt;/h3&gt;&lt;h3 id=&quot;第二节&quot;&gt;&lt;a href=&quot;#第二节&quot; class=&quot;header
       
     
     </summary>
@@ -40,9 +39,9 @@
       <category term="Hexo" scheme="https://qzwangUSTC.github.io/categories/Hexo/"/>
     
     
-      <category term="教程" scheme="https://qzwangUSTC.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="Hexo" scheme="https://qzwangUSTC.github.io/tags/Hexo/"/>
+    
+      <category term="Blog" scheme="https://qzwangUSTC.github.io/tags/Blog/"/>
     
       <category term="GitHub" scheme="https://qzwangUSTC.github.io/tags/GitHub/"/>
     

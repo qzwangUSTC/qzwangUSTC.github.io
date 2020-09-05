@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://qzwangustc.github.io/posts/41570.html</loc>
+    
+    <lastmod>2020-09-05</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://qzwangustc.github.io/contact/index.html</loc>
     
     <lastmod>2020-09-05</lastmod>
@@ -37,13 +44,6 @@
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/posts/6.html</loc>
-    
-    <lastmod>2020-09-04</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://qzwangustc.github.io/about/index.html</loc>
     
     <lastmod>2020-09-04</lastmod>
@@ -67,14 +67,14 @@
 
   
   <url>
-    <loc>https://qzwangustc.github.io/tags/%E6%95%99%E7%A8%8B/</loc>
+    <loc>https://qzwangustc.github.io/tags/Hexo/</loc>
     <lastmod>2020-09-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/tags/Hexo/</loc>
+    <loc>https://qzwangustc.github.io/tags/Blog/</loc>
     <lastmod>2020-09-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
