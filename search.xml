@@ -4,11 +4,140 @@
   
     
     <entry>
+      <title>Linux学习笔记三</title>
+      <link href="/posts/49384.html"/>
+      <url>/posts/49384.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="基本属性"><a href="#基本属性" class="headerlink" title="基本属性"></a>基本属性</h3><p>十个字母  </p><blockquote><p>参考<a href="https://mp.weixin.qq.com/s?__biz=Mzg2NTAzMTExNg==&amp;mid=2247483885&amp;idx=1&amp;sn=cf98ffb9698999abf950c55da75c60ec&amp;scene=19#wechat_redirect">狂神学Java</a></p></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux学习笔记二</title>
+      <link href="/posts/20554.html"/>
+      <url>/posts/20554.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="走进Linux系统"><a href="#走进Linux系统" class="headerlink" title="走进Linux系统"></a>走进Linux系统</h3><blockquote><p>开机登录   </p></blockquote><p>开机会启动许多程序。它们在Windows叫做“服务”（service）, 在Linux就叫做“守护进程”（daemom）<br>一般来说，用户的登录方式有三种： </p><ul><li>命令行登录</li><li>ssh登录</li><li>图形界面登录  </li></ul><p>最高权限账户为root,可以操作一切！ </p><blockquote><p>关机  </p></blockquote><p><strong>Linux中没有错误就代表成功</strong><br>在linux领域内大多用在服务器上，很少遇到关机的操作。毕竟服务器上跑一个服务是永无止境的，除非特殊情况下，不得已才会关机。<br><strong>不管关机还是重启，首先要运行sync命令，把内存中的数据写到磁盘中</strong>  </p><pre class="line-numbers language-powershell"><code class="language-powershell">sync  shutdown <span class="token comment" spellcheck="true">#关机指令，man shutdown查看用法  </span>shutdown <span class="token operator">-</span>h 10  shutdown <span class="token operator">-</span>h now  shutdown <span class="token operator">-</span>h 20:52 shutdown <span class="token operator">-</span>r now shutdown <span class="token operator">-</span>r <span class="token operator">+</span>10reboot halt  <span class="token comment" spellcheck="true"># ==  shutdown -h now     </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><blockquote><p>系统目录结构</p></blockquote><ol><li>一切皆文件 </li><li>根目录/，所有的文件都挂载在这个节点下 </li></ol><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token function">ls</span> <span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>树状目录结构：<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200907212752.png" alt="">  </p><p>一下是对这些目录的解释：  </p><ul><li>/bin：bin是Binary的缩写，这个目录存放着最经常使用的命令  </li><li>/boot：这里存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。（<strong>不要动</strong>） </li><li>/dev：dev是Device（设备），存放的是Linux的外部设备，在Linux中访问设备的方式和访问文件的方式是相同的。 </li><li><strong>/etc：这个目录存放的是所有的系统管理所需要的配置文件和子目录</strong> </li><li><strong>/home：用户的主目录，在Linux中每一个用户一个自己的目录，一般目录是以用户的账号命名的</strong></li><li>/lib：这个目录存放着系统最基本的动态链接共享库，起作用类似于Windows中的DLL文件  </li><li>/lost+found：这个目录一般是空的，当系统非法关机后，这里就存放了一些文件。（存放突然关机的一些文件）</li><li>/media：linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下</li><li>/mnt：系统提供这个目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt上，然后进入该目录就可以查看光驱里的内容了 （我们后面会把一些本地文件挂载在这个目录下）</li><li><strong>/opt：这是给主机额外安装软件所摆放的目录，比如你安装一个Oracle数据库就可以放到这个目录下。默认是空的。</strong></li><li>/proc：这个目录是一个虚拟的目录，它是系统内存的映射，我们可以通过直接访问这个目录来获取系统信息 （不用管）</li><li>/root：该目录为系统管理员，也称为超级权限者的用户主目录 </li><li>/sbin：s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序 </li><li>/srv：该目录存放一些服务启动之后需要提取的数据  </li><li>/sys：这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统sysfs  </li><li><strong>/tmp：这个目录是用来存放一些临时文件。用完即丢的文件。可以放在这个目录下，安装包！</strong></li><li><strong>/usr：这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似Windows下的program files目录</strong></li><li>/usr/bin：系统用户使用的应用程序 </li><li>/usr/sbin：超级用户使用的比较高级的管理程序和系统守护程序。Super </li><li>/usr/src：内核源代码默认的放置目录 </li><li><strong>/var：这个目录存放着不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。</strong></li><li>/run：是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除</li><li>/www：存放服务器网站相关的资源，环境，网站的项目 </li></ul><h3 id="常用的基本命令"><a href="#常用的基本命令" class="headerlink" title="常用的基本命令"></a>常用的基本命令</h3><h4 id="目录管理"><a href="#目录管理" class="headerlink" title="目录管理"></a>目录管理</h4><blockquote><p>绝对路径、相对路径  </p></blockquote><p>绝对路径是路径的全称  </p><pre class="line-numbers language-powershell"><code class="language-powershell">cd ：切换目录命令 <span class="token punctuation">.</span><span class="token operator">/</span> ：当前目录 cd <span class="token punctuation">.</span><span class="token punctuation">.</span> ：返回上一级目录 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><blockquote><p>ls（列出目录）  </p></blockquote><p>在linux中ls可能是最常被使用的！<br>-a参数：all, 查看全部的文件，包括隐藏的文件<br>-l参数，列出所有的文件，包含文件的属性和权限<br><strong>所有的Linux命令可以组合使用</strong>  </p><blockquote><p>cd命令 切换目录  </p></blockquote><p>cd 目录名（绝对路径都是以/开头，相对路径，相对与当前目录该如何寻找../../）<br>cd ~ 回到当前的用户目录  </p><blockquote><p>pwd 查看当前目录是什么目录  </p></blockquote><blockquote><p>mkdir 创建一个目录 </p></blockquote><p>-p参数 ： 创建多级目录 </p><blockquote><p>rmdir 删除目录  </p></blockquote><p>rmdir仅能删除空的目录，如果下面存在文件，需要先删除文件，递归删除多个目录-p参数即可  </p><blockquote><p>cp 复制文件或者目录 </p></blockquote><p>cp 原来的目录 新的目录  </p><blockquote><p>rm 移除文件或目录 </p></blockquote><p>-f 忽略不存在的文件，不会出现警告，<strong>强制删除！</strong><br>-r 递归删除目录！<br>-i 互动，删除询问是否删除 </p><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token function">rm</span> <span class="token operator">-</span>rf <span class="token operator">/</span> <span class="token comment" spellcheck="true">#系统中所有的文件就被删除了，删库跑路就是这么操作的！</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p>mv 移动文件或者目录 ！<strong>重命名文件</strong></p></blockquote><p>-f 强制<br>-u 只替换已经更新过的文件  </p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux学习笔记一</title>
+      <link href="/posts/37102.html"/>
+      <url>/posts/37102.html</url>
+      
+        <content type="html"><![CDATA[<p><em>Linux 一切皆文件：文件就读、写、（权限）</em><br><strong>基于CentOS 7版本</strong><br><strong>学习方式</strong>   </p><ol><li>认识Linux </li><li>基本的命令（重点：文件操作、目录管理、文件属性、Vim编辑器、账号管理、磁盘管理…） </li><li>软件的安装和部署！（java、tomcat、docker）   </li></ol><blockquote><p>Linux简介 </p></blockquote><p>Linux 内核最初只是由芬兰人林纳斯·托瓦兹（Linus Torvalds）在赫尔辛基大学上学时出于个人爱好而编写的。</p><p>Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX（可移植操作系统接口） 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。</p><p>Linux 能运行主要的 UNIX 工具软件、应用程序和网络协议。它支持 32 位和 64 位硬件。Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。   </p><blockquote><p>Linux发行版 </p></blockquote><p>Linux 的发行版说简单点就是将 Linux 内核与应用软件做一个打包。  </p><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200907171301.png" alt=""> </p><p>目前市面上较知名的发行版有：Ubuntu、RedHat、CentOS、Debian、Fedora、SuSE、OpenSUSE、Arch Linux、SolusOS 等。 </p><blockquote><p>Linux应用领域  </p></blockquote><p>今天各种场合都有使用各种 Linux 发行版，从嵌入式设备到超级计算机，并且在服务器领域确定了地位，通常服务器使用 LAMP（Linux + Apache + MySQL + PHP）或 LNMP（Linux + Nginx+ MySQL + PHP）组合。</p><p>目前 Linux 不仅在家庭与企业中使用，并且在政府中也很受欢迎。</p><ul><li>巴西联邦政府由于支持 Linux 而世界闻名。</li><li>有新闻报道俄罗斯军队自己制造的 Linux 发布版的，做为 G.H.ost 项目已经取得成果</li><li>印度的 Kerala 联邦计划在向全联邦的高中推广使用 Linux</li><li>中华人民共和国为取得技术独立，在龙芯处理器中排他性地使用 Linux。</li><li>在西班牙的一些地区开发了自己的 Linux 发布版，并且在政府与教育领域广泛使用，如 Extremadura 地区的 gnuLinEx 和 Andalusia 地区的 Guadalinex。</li><li>葡萄牙同样使用自己的 Linux 发布版 Caixa Mágica，用于 Magalh?es 笔记本电脑和 e-escola 政府软件。</li><li>法国和德国同样开始逐步采用 Linux。</li></ul><blockquote><p>参考：<a href="https://mp.weixin.qq.com/s?__biz=Mzg2NTAzMTExNg==&amp;mid=2247483879&amp;idx=1&amp;sn=96181b566c35679e48db6bd26fb59a2c&amp;scene=19#wechat_redirect">狂神说Java系列</a></p></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Docker学习笔记二</title>
+      <link href="/posts/4053.html"/>
+      <url>/posts/4053.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="Docker的安装"><a href="#Docker的安装" class="headerlink" title="Docker的安装"></a>Docker的安装</h2><h3 id="Docker的基本组成"><a href="#Docker的基本组成" class="headerlink" title="Docker的基本组成"></a>Docker的基本组成</h3><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200907150510.png" alt="">  </p><p><strong>镜像(image)：</strong><br> docker镜像就好比是一个模板，可以通过这个模板创建容器服务，tomcat镜像===&gt; run ===&gt; tomcat01容器（提供服务器），通过这个镜像可以创建多个容器（最终服务运行或者项目运行就是在容器中的）。<br><strong>容器(container)：</strong><br>Docker利用容器技术，独立运行一个或一组应用，通过镜像来创建的。<br>启动，停止，删除，基本命令！<br>目前就可以把这个容器理解为简易的linux系统<br><strong>仓库(repository)：</strong><br>仓库就是存放镜像的地方！<br>仓库分为共有仓库和私有仓库！<br>Docker Hub(默认是国外的)<br>阿里云…都有容器服务（配置镜像加速！）  </p><h3 id="Docker的安装-1"><a href="#Docker的安装-1" class="headerlink" title="Docker的安装"></a>Docker的安装</h3><blockquote><p>环境准备  </p></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Docker学习笔记一</title>
+      <link href="/posts/61265.html"/>
+      <url>/posts/61265.html</url>
+      
+        <content type="html"><![CDATA[<p><strong>只要学不死，就往死里学</strong></p><blockquote><p>Docker学习  </p></blockquote><ul><li>Docker概述</li><li>Docker安装</li><li>Docker命令<ul><li>镜像命令</li><li>容器命令</li><li>操作命令</li><li>…</li></ul></li><li>Docker镜像！</li><li>容器数据卷！</li><li>DockerFile</li><li>Docker网络原理</li><li>IDEA整合Docker</li><li>Docker Compose</li><li>Docker Swarm</li><li>CI\CD Jenkins</li><li>…   </li></ul><h2 id="Docker概述"><a href="#Docker概述" class="headerlink" title="Docker概述"></a>Docker概述</h2><h3 id="Docker为什么出现？"><a href="#Docker为什么出现？" class="headerlink" title="Docker为什么出现？"></a>Docker为什么出现？</h3><blockquote><p>两个问题：环境配置和隔离</p></blockquote><p>环境配置是十分麻烦的，每一个机器都需要配置环境（集群Redis、ES、Hadoop…)!费时费力。发布一个项目（jar+ Redis MySQL jdk ),项目能不能带上环境打包！<br>传统：开发jar, 运维来做！<br>现在：开发打包部署上线，一套流程做完！ </p><p>java – apk –发布 （应用商店）–张三使用apk —安装即可使用<br>jave – jar(环境) —打包项目带上环境（镜像）— （Docker仓库：商店）—下载我们发布的镜像 — 直接运行即可！  </p><p>Docker给以上的问题，提出了解决方案！ </p><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200907110734.png" alt="Docker官方图标"></p><p>Docker的思想来自集装箱！核心思想是隔离，打包装箱，通过隔离机制，可以将服务器用到极致。  </p><p>本质：所有的技术都是因为出现了一些问题，我们需要去解决，才去学习！ </p><h3 id="Docker历史"><a href="#Docker历史" class="headerlink" title="Docker历史"></a>Docker历史</h3><p>2010年，<strong>dotcloud</strong>公司,原先做pass的云计算服务，后面做容器化技术，命名为Docker。<br>2013年，<strong>开发源代码</strong>！<br>2014年4月9日，Docker1.0发布！<br>Docker为什么这么火？十分的轻巧！<br>在容器技术出现之前，我们都是使用虚拟机技术！<br>虚拟机：在window中装一个VMware，通过这个软件我们可以虚拟出来一台或多台电脑！笨重！<br>虚拟机和Docker容器都属于一种虚拟化技术！  </p><pre class="line-numbers language-powershell"><code class="language-powershell">vm: linux centos原生镜像（一个电脑！）  隔离，需要开启多个虚拟机！  几个G   几分钟 docker: 隔离， 镜像（最核心的环境 4m <span class="token operator">+</span> jdk <span class="token operator">+</span> mysql） 十分的小巧，运行镜像就可以了！ 小巧！ 几个M KB 秒级启动！ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="聊聊Docker"><a href="#聊聊Docker" class="headerlink" title="聊聊Docker"></a>聊聊Docker</h3><p>Docker是基于Go语言开发的！开源项目！<br><a href="https://www.docker.com/">官网</a><br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200907113513.png" alt="">  </p><p><a href="https://docs.docker.com/">文档地址</a><br><a href="https://hub.docker.com/">仓库地址</a></p><p><a href="https://baike.baidu.com/item/Docker/13344470">百度百科</a>了解更多    </p><h3 id="Docker能干嘛"><a href="#Docker能干嘛" class="headerlink" title="Docker能干嘛"></a>Docker能干嘛</h3><blockquote><p>之前的虚拟机 </p></blockquote><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200907140529.png" alt="">    </p><p>虚拟机技术缺点： </p><ol><li>资源占用多</li><li>冗余步骤多</li><li>启动很慢  </li></ol><blockquote><p>容器化技术  </p></blockquote><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200907141731.png" alt="">  </p><p>比较Docker和虚拟机技术的不同：  </p><ul><li>传统虚拟机，虚拟出一条硬件，运行一个完整的操作系统，然后在这个系统上安装和运行软件 </li><li>容器内的应用直接在宿主机的内容，容器是没有自己的内核的，也没有虚拟我们的硬件，所以就轻便了 </li><li>每个容器都是相互隔离的，每个容器都有自己的文件系统，互不影响 </li></ul><blockquote><p>DevOps (开发、运维)</p></blockquote><p><strong>应用更快速的交付和部署</strong><br>传统： 一堆帮助文档，安装程序<br>Docker: 打包镜像发布测试，一键运行  </p><p><strong>更便捷的升级和扩容</strong><br>使用了Docker之后，我们部署应用就和搭积木一样！<br>项目打包打包为一个镜像，扩展服务器A! 服务器B    </p><p><strong>更方便的系统运维</strong><br>在容器化之后，我们的开发、测试环境都是高度一致的。 </p><p><strong>更高效的计算资源利用</strong><br>Docker是内核级别的虚拟化，可以在一个物理机上运行很多的容器实例！服务器的性能可以被压榨到极致。  </p><blockquote><p> 参考视频：b站<a href="https://www.bilibili.com/video/BV1og4y1q7M4?p=3">狂神说java</a></p></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第一篇博客测试</title>
       <link href="/posts/41570.html"/>
       <url>/posts/41570.html</url>
       
-        <content type="html"><![CDATA[<p>Markdown练习。 </p><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>有序列表  </p><ol><li>第一项<ol><li>里面第一项</li><li>里面第二项</li></ol></li><li>第二项  </li></ol><p>无序列表  </p><ul><li>第一项</li><li>第二项 </li></ul><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200905105051.png" alt="图片1"> </p><h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><p>行间公式 $\lim_{x \to \infty}f(x)$  </p><p>$$<br>\lim_{x \to \infty}x^{\frac{1}{x}}=1<br>\<br>f(x)=\beta_1 x+\beta_2<br>\tag{1}<br>$$  </p><h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><table><thead><tr><th>第一列</th><th align="center">第二列</th><th align="right">第三列</th></tr></thead><tbody><tr><td>1</td><td align="center">2</td><td align="right">3</td></tr><tr><td>2</td><td align="center">3</td><td align="right">4</td></tr></tbody></table><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="https://cn.bing.com/">必应</a>  </p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ls</span> <span class="token function">cd</span> hello<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> os <span class="token keyword">if</span> <span class="token operator">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token string">"..."</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    os<span class="token punctuation">.</span>makedir<span class="token punctuation">(</span><span class="token string">"..."</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>这是一个分割线  </p><hr><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><blockquote><p>引用1<br>引用2<br>引用3    </p></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<p>Markdown练习。 </p><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>有序列表  </p><ol><li>第一项<ol><li>里面第一项</li><li>里面第二项</li></ol></li><li>第二项  </li></ol><p>无序列表  </p><ul><li>第一项</li><li>第二项 </li></ul><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200905105051.png" alt="图片1"> </p><h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><p>行间公式 $\lim_{x \to \infty}f(x)$  </p><p>$$<br>\lim_{x \to \infty}x^{\frac{1}{x}}=1<br>$$</p><p>$$<br>f(x)=\beta_1 x+\beta_2<br>\tag{1}<br>$$  </p><h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><table><thead><tr><th>第一列</th><th align="center">第二列</th><th align="right">第三列</th></tr></thead><tbody><tr><td>1</td><td align="center">2</td><td align="right">3</td></tr><tr><td>2</td><td align="center">3</td><td align="right">4</td></tr></tbody></table><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="https://cn.bing.com/">必应</a>  </p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ls</span> <span class="token function">cd</span> hello<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> os <span class="token keyword">if</span> <span class="token operator">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token string">"..."</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    os<span class="token punctuation">.</span>makedir<span class="token punctuation">(</span><span class="token string">"..."</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>这是一个分割线  </p><hr><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><blockquote><p>引用1<br>引用2<br>引用3    </p></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       <categories>
