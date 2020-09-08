@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://qzwangustc.github.io/"/>
-  <updated>2020-09-07T15:57:40.140Z</updated>
+  <updated>2020-09-08T03:39:35.678Z</updated>
   <id>https://qzwangustc.github.io/</id>
   
   <author>
@@ -21,17 +21,17 @@
     <link href="https://qzwangustc.github.io/posts/49384.html"/>
     <id>https://qzwangustc.github.io/posts/49384.html</id>
     <published>2020-09-07T12:41:00.000Z</published>
-    <updated>2020-09-07T15:57:40.140Z</updated>
+    <updated>2020-09-08T03:39:35.678Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="基本属性"><a href="#基本属性" class="headerlink" title="基本属性"></a>基本属性</h3><p>十个字母  </p><blockquote><p>参考<a href="https://mp.weixin.qq.com/s?__biz=Mzg2NTAzMTExNg==&amp;mid=2247483885&amp;idx=1&amp;sn=cf98ffb9698999abf950c55da75c60ec&amp;scene=19#wechat_redirect">狂神学Java</a></p></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    <content type="html"><![CDATA[<h3 id="基本属性"><a href="#基本属性" class="headerlink" title="基本属性"></a>基本属性</h3><p>十个字母：文件类别+属主权限+属组权限+其他用户权限  </p><blockquote><p>chgrp :  更改文件属组   </p></blockquote><pre class="line-numbers language-powershell"><code class="language-powershell">chgrp <span class="token punctuation">[</span><span class="token operator">-</span>R<span class="token punctuation">]</span> 属组名 文件名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>-R：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。 </p><blockquote><p>chown ：更改文件属主，也可以同时改变属组  </p></blockquote><pre class="line-numbers language-powershell"><code class="language-powershell">chown <span class="token punctuation">[</span>–R<span class="token punctuation">]</span> 属主名 文件名chown <span class="token punctuation">[</span><span class="token operator">-</span>R<span class="token punctuation">]</span> 属主名：属组名 文件名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="文件内容查看"><a href="#文件内容查看" class="headerlink" title="文件内容查看"></a>文件内容查看</h3><p>Linux系统使用一下命令查看文件的内容： </p><ul><li>cat 由第一行开始显示文件内容 </li><li>tac 从最后一行开始显示，可以看出tac是cat的倒着写 </li><li>nl 显示的时候，顺道输出行号！ </li><li>more 一页一页的显示文件内容  </li><li>less 与more类似，但是比more更好的是，它可以往前翻页！</li><li>head 只看头几行</li><li>tail 只看尾巴几行 </li></ul><p><strong>你可以使用man [命令]来查看各个命令的使用文档，如：man cp。</strong></p><blockquote><p>参考<a href="https://mp.weixin.qq.com/s?__biz=Mzg2NTAzMTExNg==&amp;mid=2247483885&amp;idx=1&amp;sn=cf98ffb9698999abf950c55da75c60ec&amp;scene=19#wechat_redirect">狂神学Java</a></p></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;基本属性&quot;&gt;&lt;a href=&quot;#基本属性&quot; class=&quot;headerlink&quot; title=&quot;基本属性&quot;&gt;&lt;/a&gt;基本属性&lt;/h3&gt;&lt;p&gt;十个字母  &lt;/p&gt;
+        &lt;h3 id=&quot;基本属性&quot;&gt;&lt;a href=&quot;#基本属性&quot; class=&quot;headerlink&quot; title=&quot;基本属性&quot;&gt;&lt;/a&gt;基本属性&lt;/h3&gt;&lt;p&gt;十个字母：文件类别+属主权限+属组权限+其他用户权限  &lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;参考&lt;a href=&quot;https://mp.weixin.qq.com
+&lt;p&gt;chgrp :  更改文件
       
     
     </summary>
@@ -124,9 +124,9 @@
       <category term="Docker" scheme="https://qzwangUSTC.github.io/categories/Docker/"/>
     
     
-      <category term="Linux" scheme="https://qzwangUSTC.github.io/tags/Linux/"/>
-    
       <category term="Docker" scheme="https://qzwangUSTC.github.io/tags/Docker/"/>
+    
+      <category term="Linux" scheme="https://qzwangUSTC.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -160,9 +160,9 @@
       <category term="Docker" scheme="https://qzwangUSTC.github.io/categories/Docker/"/>
     
     
-      <category term="Linux" scheme="https://qzwangUSTC.github.io/tags/Linux/"/>
-    
       <category term="Docker" scheme="https://qzwangUSTC.github.io/tags/Docker/"/>
+    
+      <category term="Linux" scheme="https://qzwangUSTC.github.io/tags/Linux/"/>
     
   </entry>
   
