@@ -507,14 +507,14 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2020-09-08
+                        2020-09-09
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.5k
+                        2.1k
                     </div>
                 
 
@@ -576,7 +576,8 @@
 <p>（root）添加账号useradd   </p>
 </blockquote>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">useradd</span> -选项 用户名  <span class="token comment" spellcheck="true">#其他选项看微信公众号   </span>
-        -m 自动创建用户的主目录 /home/<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+        -m 自动创建用户的主目录 /home/<span class="token punctuation">..</span>.  
+        -G 添加用户组<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>理解一下本质：Linux中一切皆文件，这里的添加用户说白了就是往某一个文件中写入用户的信息了！  </p>
 <p>增加用户账号就是在/etc/passwd文件中为新用户增加一条记录，同时更新其他系统文件，如: /etc/shadow, /etc/group等。</p>
 <blockquote>
@@ -640,6 +641,71 @@ re password:  <span aria-hidden="true" class="line-numbers-rows"><span></span><s
 </blockquote>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># groupmod -g 520 -n qzwang2 qzwang </span>
 <span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /etc/group</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>用户如果要切换用户组怎么办？ </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 登录当前用户  qzwang </span>
+$ newgrp root  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>拓展：文件的查看！（了解即可）  </p>
+</blockquote>
+<p>/etc/passwd  </p>
+<p><strong>用户名:口令（登录密码）:用户标识号:组标识号:注释性描述:主目录:登录Shell</strong>     </p>
+<p>这个文件中的每一行都代表一个用户，我们可以看到这个用户的主目录在哪，可以看到属于哪一个组！  </p>
+<p><strong>登录口令：真正的加密后的用户口令字存放到/etc/shadow文件中，保证密码的安全性</strong>   </p>
+<p>用户组的所有信息都存放在/etc/group文件中。  </p>
+<h3 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h3><blockquote>
+<p>df（列出文件系统整体的磁盘使用量）  du （检查磁盘空间使用量）   </p>
+</blockquote>
+<p>df!<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200909093527.png" alt="">   </p>
+<p>du!  (进入到某一个文件夹)   </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">du</span>   
+<span class="token function">du</span> -a -h   <span class="token comment" spellcheck="true">#查看隐藏文件，按照M或G显示大小</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200909094808.png" alt="">  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200909095024.png" alt="">  </p>
+<blockquote>
+<p>Mac或者想使用Linux挂载我们的一些本底磁盘或者文件    </p>
+</blockquote>
+<p>mount : 挂载<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200909095605.png" alt="">   </p>
+<p>umount -f [挂载位置] 强制卸载   </p>
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>Linux中一切皆文件<br><strong>（文件：读写执行（查看，创建，删除，移动，复制，编辑），权限（用户、用户组）。系统：（磁盘，进程））</strong></p>
+<p>对用我们开发人员来说，其实Linux更多偏向于使用即可！   </p>
+<blockquote>
+<p>基本概念！什么时进程？  </p>
+</blockquote>
+<ol>
+<li>在Linux中，每一个程序都是有自己的一个进程，每一个进程都有一个id号！</li>
+<li>每一个进程，都会有一个父进程！ </li>
+<li>进程可以有两种存在方式：前台！后台运行！</li>
+<li>一般的话服务都是都是后台运行的，基本的程序都是前台运行的！  </li>
+</ol>
+<blockquote>
+<p>命令  </p>
+</blockquote>
+<p><strong>ps:</strong>查看当前系统中正在执行的各种进程信息！<br>ps-xx ：</p>
+<ul>
+<li>-a ：显示当前终端运行的进程信息（当前的进程）</li>
+<li>-u ：以用户的信息显示进程 </li>
+<li>-x ：显示后台运行进程的参数！ </li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># ps -aux 查看所有的进程  </span>
+<span class="token function">ps</span> -aux<span class="token operator">|</span><span class="token function">grep</span> mysql
+<span class="token function">ps</span> -aux<span class="token operator">|</span><span class="token function">grep</span> redis
+
+<span class="token comment" spellcheck="true"># | 在Linux这个叫做管道符   A|B</span>
+<span class="token comment" spellcheck="true"># grep 查找文件中符合条件的字符串！  </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对于我们来说，这里目前只需要记住一个命令即可 ps-xx|grep 进程名字！ 过滤进程信息！  </p>
+<p><strong>ps -ef ：可以查看到父进程的信息</strong>  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ps</span> -ef<span class="token operator">|</span><span class="token function">grep</span> mysql <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>看父进程我们一般可以通过进程树结构来查看！  </p>
+<pre class="line-numbers language-bash"><code class="language-bash">pstree  
+    -p 显示父id  
+    -u 显示用户组   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>结束进程：杀掉进程，等价于Windows结束任务！   </p>
+<p>kill -9 进程的id  </p>
+<p>但是啊，我们平时写的一个Java代码死循环了，可以选择结束进程！杀进程  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">kill</span> -9 进程的id  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>表示强制结束该进程！   </p>
 <blockquote>
 <p>参考 <a href="https://mp.weixin.qq.com/s?__biz=Mzg2NTAzMTExNg==&amp;mid=2247483895&amp;idx=1&amp;sn=b685934ee0d08b9d01cc0c35ed7fed71&amp;scene=19#wechat_redirect">狂神学Java</a></p>
 </blockquote>
@@ -1097,7 +1163,7 @@ re password:  <span aria-hidden="true" class="line-numbers-rows"><span></span><s
             
                 
                     &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                            class="white-color">5.8k</span>&nbsp;字
+                            class="white-color">6.4k</span>&nbsp;字
                 
                 
                 <script>
@@ -1283,7 +1349,7 @@ re password:  <span aria-hidden="true" class="line-numbers-rows"><span></span><s
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1599579763274')
+  navigator.serviceWorker.register('/sw.js?t=1599619895925')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
