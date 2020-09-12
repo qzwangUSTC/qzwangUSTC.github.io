@@ -35,7 +35,7 @@
     </style>
     <script src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/libs/jquery/jquery.min.js"></script>
 <meta name="generator" content="Hexo 4.1.1"><link rel="alternate" href="/atom.xml" title="qzwangUSTC" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-material-light.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
@@ -511,14 +511,14 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2020-09-07
+                        2020-09-12
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        252
+                        4.3k
                     </div>
                 
 
@@ -534,6 +534,676 @@
 <p><strong>镜像(image)：</strong><br> docker镜像就好比是一个模板，可以通过这个模板创建容器服务，tomcat镜像===&gt; run ===&gt; tomcat01容器（提供服务器），通过这个镜像可以创建多个容器（最终服务运行或者项目运行就是在容器中的）。<br><strong>容器(container)：</strong><br>Docker利用容器技术，独立运行一个或一组应用，通过镜像来创建的。<br>启动，停止，删除，基本命令！<br>目前就可以把这个容器理解为简易的linux系统<br><strong>仓库(repository)：</strong><br>仓库就是存放镜像的地方！<br>仓库分为共有仓库和私有仓库！<br>Docker Hub(默认是国外的)<br>阿里云…都有容器服务（配置镜像加速！）  </p>
 <h3 id="Docker的安装-1"><a href="#Docker的安装-1" class="headerlink" title="Docker的安装"></a>Docker的安装</h3><blockquote>
 <p>环境准备  </p>
+</blockquote>
+<ol>
+<li>需要会一点点Linux的基础  </li>
+<li>CentOS 7  </li>
+<li>我们使用Xshell连接远程服务器进行操作！   </li>
+</ol>
+<blockquote>
+<p>环境查看  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 系统内核是 3.10 以上的 </span>
+<span class="token punctuation">[</span>root@localhost Desktop<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># uname -r </span>
+3.10.0-327.el7.x86_64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 系统版本  </span>
+<span class="token punctuation">[</span>root@localhost Desktop<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /etc/os-release </span>
+NAME<span class="token operator">=</span><span class="token string">"CentOS Linux"</span>
+VERSION<span class="token operator">=</span><span class="token string">"7 (Core)"</span>
+ID<span class="token operator">=</span><span class="token string">"centos"</span>
+ID_LIKE<span class="token operator">=</span><span class="token string">"rhel fedora"</span>
+VERSION_ID<span class="token operator">=</span><span class="token string">"7"</span>
+PRETTY_NAME<span class="token operator">=</span><span class="token string">"CentOS Linux 7 (Core)"</span>
+ANSI_COLOR<span class="token operator">=</span><span class="token string">"0;31"</span>
+CPE_NAME<span class="token operator">=</span><span class="token string">"cpe:/o:centos:centos:7"</span>
+HOME_URL<span class="token operator">=</span><span class="token string">"https://www.centos.org/"</span>
+BUG_REPORT_URL<span class="token operator">=</span><span class="token string">"https://bugs.centos.org/"</span>
+
+CENTOS_MANTISBT_PROJECT<span class="token operator">=</span><span class="token string">"CentOS-7"</span>
+CENTOS_MANTISBT_PROJECT_VERSION<span class="token operator">=</span><span class="token string">"7"</span>
+REDHAT_SUPPORT_PRODUCT<span class="token operator">=</span><span class="token string">"centos"</span>
+REDHAT_SUPPORT_PRODUCT_VERSION<span class="token operator">=</span><span class="token string">"7"</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>安装  </p>
+</blockquote>
+<p>帮助文档：  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 1. 卸载旧的版本  </span>
+yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine  
+
+<span class="token comment" spellcheck="true"># 2. 需要的安装包  </span>
+yum <span class="token function">install</span> -y yum-utils   
+
+<span class="token comment" spellcheck="true"># 3. 设置镜像的仓库  </span>
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo  <span class="token comment" spellcheck="true">#官方给的是国外的，速度慢 </span>
+
+yum-config-manager \
+    --add-repo \
+   http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo   <span class="token comment" spellcheck="true">#推荐使用阿里云镜像，速度十分快   </span>
+
+<span class="token comment" spellcheck="true"># 更新yum软件包索引 </span>
+yum makecache fast
+
+<span class="token comment" spellcheck="true"># 4. 安装docker相关的东西  docker-ce社区版  ee企业版</span>
+yum <span class="token function">install</span> docker-ce docker-ce-cli containerd.io
+
+<span class="token comment" spellcheck="true"># 5. 启动docker  </span>
+systemctl start docker
+
+<span class="token comment" spellcheck="true"># 6. 使用docker version查看是否安装成功  </span>
+docker version    
+
+<span class="token comment" spellcheck="true"># 7. hello-world   </span>
+docker run hello-world  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 8. 查看一下下载的这个 hello-world镜像  </span>
+docker images<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200910092128.png" alt="">  </p>
+<blockquote>
+<p>了解：卸载docker   </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#1. 卸载依赖   </span>
+yum remove docker-ce docker-ce-cli containerd.io 
+
+<span class="token comment" spellcheck="true">#2. 删除资源 </span>
+<span class="token function">rm</span> -rf /var/lib/docker  
+
+<span class="token comment" spellcheck="true">#  /var/lib/docker  docker的默认工作路径 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="阿里云镜像加速"><a href="#阿里云镜像加速" class="headerlink" title="阿里云镜像加速"></a>阿里云镜像加速</h3><p>1、找到镜像加速地址  </p>
+<p>2、配置镜像加速器  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mkdir</span> -p /etc/docker
+<span class="token function">sudo</span> <span class="token function">tee</span> /etc/docker/daemon.json <span class="token operator">&lt;&lt;</span>-<span class="token string">'EOF'</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"registry-mirrors"</span><span class="token keyword">:</span> <span class="token punctuation">[</span><span class="token string">"https://9gqjxoa7.mirror.aliyuncs.com"</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+EOF
+<span class="token function">sudo</span> systemctl daemon-reload
+<span class="token function">sudo</span> systemctl restart docker    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="回顾HelloWorld流程"><a href="#回顾HelloWorld流程" class="headerlink" title="回顾HelloWorld流程"></a>回顾HelloWorld流程</h3><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200910125806.png" alt="">  </p>
+<h3 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h3><blockquote>
+<p>Docker是怎么工作的？ </p>
+</blockquote>
+<p>Docker是一个Client-Server结构的系统，Docker的守护进程运行在主机上。通过Socker从客户端访问！  </p>
+<p>DockerServer接收到Docker-Clinet的指令，就会执行这个命令！  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200910141037.png" alt="">  </p>
+<blockquote>
+<p>Docker为什么比VM快？ </p>
+</blockquote>
+<p>1、Docker有着比虚拟机更少的抽象层<br>2、Docker利用的是宿主机的内核，VM需要是Guest OS<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200910142146.png" alt=""> </p>
+<p>所以说，新建一个容器的时候，docker不需要想虚拟机一样重新加载一个操作系统内核，避免引导。虚拟机是加载Guest OS，分钟级别的，而docker是利用宿主机的操作系统，省略了这个复杂的过程，秒级！ </p>
+<p>之后学习完毕所有的命令，再回过头来看这段理论，就会很清晰！</p>
+<h2 id="Docker的常用命令"><a href="#Docker的常用命令" class="headerlink" title="Docker的常用命令"></a>Docker的常用命令</h2><h3 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h3><pre class="line-numbers language-bash"><code class="language-bash">docker version  <span class="token comment" spellcheck="true">#显示版本信息   </span>
+docker info     <span class="token comment" spellcheck="true">#显示docker的系统信息，包括镜像和容器的数量  </span>
+docker 命令 --help   <span class="token comment" spellcheck="true">#万能命令 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><a href="https://docs.docker.com/reference/">帮助文档</a></p>
+<h3 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h3><blockquote>
+<p>docker images 查看所有本地的主机上的镜像  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost Desktop<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker images </span>
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              bf756fb1ae65        8 months ago        13.3kB  
+
+<span class="token comment" spellcheck="true"># 解释 </span>
+REPOSITORY 镜像的仓库源
+TAG        镜像的标签
+IMAGE ID   镜像的id
+CREATED    镜像的创建时间  
+SIZE       镜像的大小   
+
+<span class="token comment" spellcheck="true"># 可选项  </span>
+-a, --all      <span class="token comment" spellcheck="true"># 列出所有镜像       </span>
+-q, --quiet    <span class="token comment" spellcheck="true"># 只显示镜像的id  </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>docker search 搜索镜像  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost Desktop<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker search mysql </span>
+NAME                              DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+mysql                             MySQL is a widely used, open-source relation…   9946                <span class="token punctuation">[</span>OK<span class="token punctuation">]</span>                
+mariadb                           MariaDB is a community-developed fork of MyS…   3639                <span class="token punctuation">[</span>OK<span class="token punctuation">]</span>                
+
+<span class="token comment" spellcheck="true"># 可选项，通过搜索来过滤 </span>
+--filter<span class="token operator">=</span>STARS<span class="token operator">=</span>3000   <span class="token comment" spellcheck="true">#搜索出来的镜像就是STARS大于3000的 </span>
+
+<span class="token punctuation">[</span>root@localhost Desktop<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker search mysql --filter=STARS=5000</span>
+NAME                DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+mysql               MySQL is a widely used, open-source relation…   9946                <span class="token punctuation">[</span>OK<span class="token punctuation">]</span>                <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>docker pull 下载镜像  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 下载镜像 docker pull 镜像名[:tag]</span>
+<span class="token punctuation">[</span>root@localhost Desktop<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker pull mysql </span>
+Using default tag: latest            <span class="token comment" spellcheck="true"># 如果不写tag，默认就是 latest </span>
+latest: Pulling from library/mysql
+d121f8d1c412: Pull complete         <span class="token comment" spellcheck="true"># 分层下载，docker image的核心 联合文件系统 </span>
+f3cebc0b4691: Pull complete 
+1862755a0b37: Pull complete 
+489b44f3dbb4: Pull complete 
+690874f836db: Pull complete 
+baa8be383ffb: Pull complete 
+55356608b4ac: Pull complete 
+dd35ceccb6eb: Pull complete 
+429b35712b19: Pull complete 
+162d8291095c: Pull complete 
+5e500ef7181b: Pull complete 
+af7528e958b6: Pull complete 
+Digest: sha256:e1bfe11693ed2052cb3b4e5fa356c65381129e87e38551c6cd6ec532ebe0e808  <span class="token comment" spellcheck="true"># 签名，防伪标志</span>
+Status: Downloaded newer image <span class="token keyword">for</span> mysql:latest
+docker.io/library/mysql:latest  <span class="token comment" spellcheck="true"># 真实地址  </span>
+
+
+<span class="token comment" spellcheck="true"># 等价于它 </span>
+docker pull mysql 
+docker pull docker.io/library/mysql:latest  
+
+
+<span class="token comment" spellcheck="true"># 指定版本下载   </span>
+<span class="token punctuation">[</span>root@localhost Desktop<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker pull mysql:5.7</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200910215744.png" alt=""></p>
+<blockquote>
+<p>docker rmi 删除镜像  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">docker rmi -f 镜像的id   <span class="token comment" spellcheck="true">#删除指定的镜像</span>
+docker rmi -f 镜像的id 镜像的id 镜像的id   <span class="token comment" spellcheck="true">#删除多个镜像</span>
+docker rmi -f <span class="token variable"><span class="token variable">$(</span>docker images -aq<span class="token variable">)</span></span>    <span class="token comment" spellcheck="true">#删除所有的镜像</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h3><p><strong>说明：我们有了镜像才可以创建容器，Linux，下载一个centos镜像来测试学习</strong>  </p>
+<pre class="line-numbers language-bash"><code class="language-bash">docker pull centos <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>新建容器并启动  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">docker run <span class="token punctuation">[</span>可选参数<span class="token punctuation">]</span> image  
+
+<span class="token comment" spellcheck="true"># 参数说明  </span>
+--name<span class="token operator">=</span><span class="token string">"Name"</span>  容器名字 tomcat01 tomcat02 用来区分容器  
+-d             后台方式运行
+-it            使用交互方式运行，进入容器查看内容
+-p             指定容器端口 -p 8080:8080 
+    -p ip:主机端口:容器端口
+    -p 主机端口:容器端口 （常用）     
+    -p 容器端口 
+    容器端口 
+-P             随机指定端口
+
+
+<span class="token comment" spellcheck="true"># 测试，启动并进入容器</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run -it centos /bin/bash </span>
+<span class="token punctuation">[</span>root@0e436190bf29 /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls    #查看容器内的centos,基础版本，很多命令都是不完善的</span>
+bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+
+<span class="token comment" spellcheck="true"># 从容器中退回主机 </span>
+<span class="token punctuation">[</span>root@0e436190bf29 /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># exit </span>
+<span class="token keyword">exit</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls /</span>
+bin  boot  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>列出所有的运行的容器  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># docker ps 命令 </span>
+-a <span class="token comment" spellcheck="true"># 列出当前正在运行的容器+带出历史运行过的容器  </span>
+-n<span class="token operator">=</span>? <span class="token comment" spellcheck="true"># 显示最近创建的容器 </span>
+-q  <span class="token comment" spellcheck="true"># 只显示容器的编号   </span>
+
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker ps </span>
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker ps -a </span>
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                         PORTS               NAMES
+0e436190bf29        centos              <span class="token string">"/bin/bash"</span>         25 minutes ago      Exited <span class="token punctuation">(</span>0<span class="token punctuation">)</span> 21 minutes ago                          dreamy_gagarin
+f1011764535e        bf756fb1ae65        <span class="token string">"/hello"</span>            About an hour ago   Exited <span class="token punctuation">(</span>0<span class="token punctuation">)</span> About an hour ago                       exciting_wilson
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker ps -aq  </span>
+0e436190bf29
+f1011764535e<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>退出容器 </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token keyword">exit</span>   <span class="token comment" spellcheck="true">#容器直接停止并退出 </span>
+Ctrl + P + Q  <span class="token comment" spellcheck="true"># 容容器不停止退出 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>删除容器   </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">docker <span class="token function">rm</span> 容器id                <span class="token comment" spellcheck="true"># 删除指定的容器，不能删除正在运行的容器， 如果要强制删除 rm -f </span>
+docker <span class="token function">rm</span> -f <span class="token variable"><span class="token variable">$(</span>docker <span class="token function">ps</span> -aq<span class="token variable">)</span></span>   <span class="token comment" spellcheck="true"># 删除所有的容器  </span>
+docker <span class="token function">ps</span> -a -q<span class="token operator">|</span><span class="token function">xargs</span> docker <span class="token function">rm</span>       <span class="token comment" spellcheck="true"># 删除所有的容器</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>启动和停止容器的操作 </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">docker start 容器id      <span class="token comment" spellcheck="true"># 启动容器</span>
+docker restart 容器id    <span class="token comment" spellcheck="true"># 重启容器</span>
+docker stop 容器id      <span class="token comment" spellcheck="true"># 停止当前正在运行的容器 </span>
+docker <span class="token function">kill</span> 容器id      <span class="token comment" spellcheck="true"># 强制停止当前正在运行的容器 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="常用其他命令"><a href="#常用其他命令" class="headerlink" title="常用其他命令"></a>常用其他命令</h3><blockquote>
+<p>后台启动容器 </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 命令 docker run -d 镜像名！</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run -d centos   </span>
+
+<span class="token comment" spellcheck="true"># 问题docker ps，发现 centos 停止了 </span>
+
+<span class="token comment" spellcheck="true"># 常见的坑：docker 容器使用后台运行，就必须要有一个前台进程，docker发现没有应用，就会自动停止  </span>
+<span class="token comment" spellcheck="true"># nginx，容器启动后，发现自己没有提供服务，就会立刻停止，就是没有程序了  </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>查看日志 </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">docker logs -f -t -tail 行数 容器id  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>查看容器中的进程信息 ps  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 命令 docker top 容器id  </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker top 0926bd4f4c1b</span>
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                15076               15059               0                   11:26               pts/0               00:00:00            /bin/bash
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>查看镜像的元数据  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 命令 docker inspect 容器id  </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker inspect 0926bd4f4c1b</span>
+<span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        <span class="token string">"Id"</span><span class="token keyword">:</span> <span class="token string">"0926bd4f4c1b0385ec9ad6e996c8cae09170f99637fc2ca300d85fe605043b95"</span>,
+        <span class="token string">"Created"</span><span class="token keyword">:</span> <span class="token string">"2020-09-11T03:25:11.846469352Z"</span>,
+        <span class="token string">"Path"</span><span class="token keyword">:</span> <span class="token string">"/bin/bash"</span>,
+        <span class="token string">"Args"</span><span class="token keyword">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>,
+        <span class="token string">"State"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"Status"</span><span class="token keyword">:</span> <span class="token string">"running"</span>,
+            <span class="token string">"Running"</span><span class="token keyword">:</span> true,
+            <span class="token string">"Paused"</span><span class="token keyword">:</span> false,
+            <span class="token string">"Restarting"</span><span class="token keyword">:</span> false,
+            <span class="token string">"OOMKilled"</span><span class="token keyword">:</span> false,
+            <span class="token string">"Dead"</span><span class="token keyword">:</span> false,
+            <span class="token string">"Pid"</span><span class="token keyword">:</span> 15076,
+            <span class="token string">"ExitCode"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"Error"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"StartedAt"</span><span class="token keyword">:</span> <span class="token string">"2020-09-11T03:26:37.380363456Z"</span>,
+            <span class="token string">"FinishedAt"</span><span class="token keyword">:</span> <span class="token string">"2020-09-11T03:26:15.439746877Z"</span>
+        <span class="token punctuation">}</span>,
+        <span class="token string">"Image"</span><span class="token keyword">:</span> <span class="token string">"sha256:0d120b6ccaa8c5e149176798b3501d4dd1885f961922497cd0abef155c869566"</span>,
+        <span class="token string">"ResolvConfPath"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/containers/0926bd4f4c1b0385ec9ad6e996c8cae09170f99637fc2ca300d85fe605043b95/resolv.conf"</span>,
+        <span class="token string">"HostnamePath"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/containers/0926bd4f4c1b0385ec9ad6e996c8cae09170f99637fc2ca300d85fe605043b95/hostname"</span>,
+        <span class="token string">"HostsPath"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/containers/0926bd4f4c1b0385ec9ad6e996c8cae09170f99637fc2ca300d85fe605043b95/hosts"</span>,
+        <span class="token string">"LogPath"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/containers/0926bd4f4c1b0385ec9ad6e996c8cae09170f99637fc2ca300d85fe605043b95/0926bd4f4c1b0385ec9ad6e996c8cae09170f99637fc2ca300d85fe605043b95-json.log"</span>,
+        <span class="token string">"Name"</span><span class="token keyword">:</span> <span class="token string">"/hungry_meitner"</span>,
+        <span class="token string">"RestartCount"</span><span class="token keyword">:</span> 0,
+        <span class="token string">"Driver"</span><span class="token keyword">:</span> <span class="token string">"overlay2"</span>,
+        <span class="token string">"Platform"</span><span class="token keyword">:</span> <span class="token string">"linux"</span>,
+        <span class="token string">"MountLabel"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+        <span class="token string">"ProcessLabel"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+        <span class="token string">"AppArmorProfile"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+        <span class="token string">"ExecIDs"</span><span class="token keyword">:</span> null,
+        <span class="token string">"HostConfig"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"Binds"</span><span class="token keyword">:</span> null,
+            <span class="token string">"ContainerIDFile"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"LogConfig"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+                <span class="token string">"Type"</span><span class="token keyword">:</span> <span class="token string">"json-file"</span>,
+                <span class="token string">"Config"</span><span class="token keyword">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>,
+            <span class="token string">"NetworkMode"</span><span class="token keyword">:</span> <span class="token string">"default"</span>,
+            <span class="token string">"PortBindings"</span><span class="token keyword">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>,
+            <span class="token string">"RestartPolicy"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+                <span class="token string">"Name"</span><span class="token keyword">:</span> <span class="token string">"no"</span>,
+                <span class="token string">"MaximumRetryCount"</span><span class="token keyword">:</span> 0
+            <span class="token punctuation">}</span>,
+            <span class="token string">"AutoRemove"</span><span class="token keyword">:</span> false,
+            <span class="token string">"VolumeDriver"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"VolumesFrom"</span><span class="token keyword">:</span> null,
+            <span class="token string">"CapAdd"</span><span class="token keyword">:</span> null,
+            <span class="token string">"CapDrop"</span><span class="token keyword">:</span> null,
+            <span class="token string">"Capabilities"</span><span class="token keyword">:</span> null,
+            <span class="token string">"Dns"</span><span class="token keyword">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>,
+            <span class="token string">"DnsOptions"</span><span class="token keyword">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>,
+            <span class="token string">"DnsSearch"</span><span class="token keyword">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>,
+            <span class="token string">"ExtraHosts"</span><span class="token keyword">:</span> null,
+            <span class="token string">"GroupAdd"</span><span class="token keyword">:</span> null,
+            <span class="token string">"IpcMode"</span><span class="token keyword">:</span> <span class="token string">"private"</span>,
+            <span class="token string">"Cgroup"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"Links"</span><span class="token keyword">:</span> null,
+            <span class="token string">"OomScoreAdj"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"PidMode"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"Privileged"</span><span class="token keyword">:</span> false,
+            <span class="token string">"PublishAllPorts"</span><span class="token keyword">:</span> false,
+            <span class="token string">"ReadonlyRootfs"</span><span class="token keyword">:</span> false,
+            <span class="token string">"SecurityOpt"</span><span class="token keyword">:</span> null,
+            <span class="token string">"UTSMode"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"UsernsMode"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"ShmSize"</span><span class="token keyword">:</span> 67108864,
+            <span class="token string">"Runtime"</span><span class="token keyword">:</span> <span class="token string">"runc"</span>,
+            <span class="token string">"ConsoleSize"</span><span class="token keyword">:</span> <span class="token punctuation">[</span>
+                0,
+                0
+            <span class="token punctuation">]</span>,
+            <span class="token string">"Isolation"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"CpuShares"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"Memory"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"NanoCpus"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"CgroupParent"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"BlkioWeight"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"BlkioWeightDevice"</span><span class="token keyword">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>,
+            <span class="token string">"BlkioDeviceReadBps"</span><span class="token keyword">:</span> null,
+            <span class="token string">"BlkioDeviceWriteBps"</span><span class="token keyword">:</span> null,
+            <span class="token string">"BlkioDeviceReadIOps"</span><span class="token keyword">:</span> null,
+            <span class="token string">"BlkioDeviceWriteIOps"</span><span class="token keyword">:</span> null,
+            <span class="token string">"CpuPeriod"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"CpuQuota"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"CpuRealtimePeriod"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"CpuRealtimeRuntime"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"CpusetCpus"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"CpusetMems"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"Devices"</span><span class="token keyword">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>,
+            <span class="token string">"DeviceCgroupRules"</span><span class="token keyword">:</span> null,
+            <span class="token string">"DeviceRequests"</span><span class="token keyword">:</span> null,
+            <span class="token string">"KernelMemory"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"KernelMemoryTCP"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"MemoryReservation"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"MemorySwap"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"MemorySwappiness"</span><span class="token keyword">:</span> null,
+            <span class="token string">"OomKillDisable"</span><span class="token keyword">:</span> false,
+            <span class="token string">"PidsLimit"</span><span class="token keyword">:</span> null,
+            <span class="token string">"Ulimits"</span><span class="token keyword">:</span> null,
+            <span class="token string">"CpuCount"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"CpuPercent"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"IOMaximumIOps"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"IOMaximumBandwidth"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"MaskedPaths"</span><span class="token keyword">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"/proc/asound"</span>,
+                <span class="token string">"/proc/acpi"</span>,
+                <span class="token string">"/proc/kcore"</span>,
+                <span class="token string">"/proc/keys"</span>,
+                <span class="token string">"/proc/latency_stats"</span>,
+                <span class="token string">"/proc/timer_list"</span>,
+                <span class="token string">"/proc/timer_stats"</span>,
+                <span class="token string">"/proc/sched_debug"</span>,
+                <span class="token string">"/proc/scsi"</span>,
+                <span class="token string">"/sys/firmware"</span>
+            <span class="token punctuation">]</span>,
+            <span class="token string">"ReadonlyPaths"</span><span class="token keyword">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"/proc/bus"</span>,
+                <span class="token string">"/proc/fs"</span>,
+                <span class="token string">"/proc/irq"</span>,
+                <span class="token string">"/proc/sys"</span>,
+                <span class="token string">"/proc/sysrq-trigger"</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>,
+        <span class="token string">"GraphDriver"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"Data"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+                <span class="token string">"LowerDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/107a7c5cddbd6a4b2d393efdd4c2b20162408de28075a350f064a034e8aeeaf3-init/diff:/var/lib/docker/overlay2/fad9a8dbac2c6b86ba1b83b482cfbf591fabcbf379d66aa5fde0024059112365/diff"</span>,
+                <span class="token string">"MergedDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/107a7c5cddbd6a4b2d393efdd4c2b20162408de28075a350f064a034e8aeeaf3/merged"</span>,
+                <span class="token string">"UpperDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/107a7c5cddbd6a4b2d393efdd4c2b20162408de28075a350f064a034e8aeeaf3/diff"</span>,
+                <span class="token string">"WorkDir"</span><span class="token keyword">:</span> <span class="token string">"/var/lib/docker/overlay2/107a7c5cddbd6a4b2d393efdd4c2b20162408de28075a350f064a034e8aeeaf3/work"</span>
+            <span class="token punctuation">}</span>,
+            <span class="token string">"Name"</span><span class="token keyword">:</span> <span class="token string">"overlay2"</span>
+        <span class="token punctuation">}</span>,
+        <span class="token string">"Mounts"</span><span class="token keyword">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>,
+        <span class="token string">"Config"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"Hostname"</span><span class="token keyword">:</span> <span class="token string">"0926bd4f4c1b"</span>,
+            <span class="token string">"Domainname"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"User"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"AttachStdin"</span><span class="token keyword">:</span> true,
+            <span class="token string">"AttachStdout"</span><span class="token keyword">:</span> true,
+            <span class="token string">"AttachStderr"</span><span class="token keyword">:</span> true,
+            <span class="token string">"Tty"</span><span class="token keyword">:</span> true,
+            <span class="token string">"OpenStdin"</span><span class="token keyword">:</span> true,
+            <span class="token string">"StdinOnce"</span><span class="token keyword">:</span> true,
+            <span class="token string">"Env"</span><span class="token keyword">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"</span>
+            <span class="token punctuation">]</span>,
+            <span class="token string">"Cmd"</span><span class="token keyword">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"/bin/bash"</span>
+            <span class="token punctuation">]</span>,
+            <span class="token string">"Image"</span><span class="token keyword">:</span> <span class="token string">"centos"</span>,
+            <span class="token string">"Volumes"</span><span class="token keyword">:</span> null,
+            <span class="token string">"WorkingDir"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"Entrypoint"</span><span class="token keyword">:</span> null,
+            <span class="token string">"OnBuild"</span><span class="token keyword">:</span> null,
+            <span class="token string">"Labels"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+                <span class="token string">"org.label-schema.build-date"</span><span class="token keyword">:</span> <span class="token string">"20200809"</span>,
+                <span class="token string">"org.label-schema.license"</span><span class="token keyword">:</span> <span class="token string">"GPLv2"</span>,
+                <span class="token string">"org.label-schema.name"</span><span class="token keyword">:</span> <span class="token string">"CentOS Base Image"</span>,
+                <span class="token string">"org.label-schema.schema-version"</span><span class="token keyword">:</span> <span class="token string">"1.0"</span>,
+                <span class="token string">"org.label-schema.vendor"</span><span class="token keyword">:</span> <span class="token string">"CentOS"</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>,
+        <span class="token string">"NetworkSettings"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"Bridge"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"SandboxID"</span><span class="token keyword">:</span> <span class="token string">"fdba0b9e70f37ffb69b3e4b6e275a97e8301cdff37cbb2ceb736f820d52321c6"</span>,
+            <span class="token string">"HairpinMode"</span><span class="token keyword">:</span> false,
+            <span class="token string">"LinkLocalIPv6Address"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"LinkLocalIPv6PrefixLen"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"Ports"</span><span class="token keyword">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>,
+            <span class="token string">"SandboxKey"</span><span class="token keyword">:</span> <span class="token string">"/var/run/docker/netns/fdba0b9e70f3"</span>,
+            <span class="token string">"SecondaryIPAddresses"</span><span class="token keyword">:</span> null,
+            <span class="token string">"SecondaryIPv6Addresses"</span><span class="token keyword">:</span> null,
+            <span class="token string">"EndpointID"</span><span class="token keyword">:</span> <span class="token string">"fcb648ac281376ab2f0615f986590d11705c1e229737db9c644170695cf9a2b9"</span>,
+            <span class="token string">"Gateway"</span><span class="token keyword">:</span> <span class="token string">"172.17.0.1"</span>,
+            <span class="token string">"GlobalIPv6Address"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"GlobalIPv6PrefixLen"</span><span class="token keyword">:</span> 0,
+            <span class="token string">"IPAddress"</span><span class="token keyword">:</span> <span class="token string">"172.17.0.2"</span>,
+            <span class="token string">"IPPrefixLen"</span><span class="token keyword">:</span> 16,
+            <span class="token string">"IPv6Gateway"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+            <span class="token string">"MacAddress"</span><span class="token keyword">:</span> <span class="token string">"02:42:ac:11:00:02"</span>,
+            <span class="token string">"Networks"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+                <span class="token string">"bridge"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+                    <span class="token string">"IPAMConfig"</span><span class="token keyword">:</span> null,
+                    <span class="token string">"Links"</span><span class="token keyword">:</span> null,
+                    <span class="token string">"Aliases"</span><span class="token keyword">:</span> null,
+                    <span class="token string">"NetworkID"</span><span class="token keyword">:</span> <span class="token string">"dd86007737868578e7ce527384c8d73e34baaf03c6de8b2baeca9acf9282d6eb"</span>,
+                    <span class="token string">"EndpointID"</span><span class="token keyword">:</span> <span class="token string">"fcb648ac281376ab2f0615f986590d11705c1e229737db9c644170695cf9a2b9"</span>,
+                    <span class="token string">"Gateway"</span><span class="token keyword">:</span> <span class="token string">"172.17.0.1"</span>,
+                    <span class="token string">"IPAddress"</span><span class="token keyword">:</span> <span class="token string">"172.17.0.2"</span>,
+                    <span class="token string">"IPPrefixLen"</span><span class="token keyword">:</span> 16,
+                    <span class="token string">"IPv6Gateway"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+                    <span class="token string">"GlobalIPv6Address"</span><span class="token keyword">:</span> <span class="token string">""</span>,
+                    <span class="token string">"GlobalIPv6PrefixLen"</span><span class="token keyword">:</span> 0,
+                    <span class="token string">"MacAddress"</span><span class="token keyword">:</span> <span class="token string">"02:42:ac:11:00:02"</span>,
+                    <span class="token string">"DriverOpts"</span><span class="token keyword">:</span> null
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>进入当前正在运行的容器    </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 我们通常容器都是使用后台方式启动的，需要进入容器，修改一些配置 </span>
+
+<span class="token comment" spellcheck="true"># 命令   </span>
+docker <span class="token function">exec</span> -it 容器id /bin/bash  
+<span class="token comment" spellcheck="true"># 测试</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker ps -a </span>
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+0926bd4f4c1b        centos              <span class="token string">"/bin/bash"</span>         12 hours ago        Up 12 hours                             hungry_meitner
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker exec -it 0926bd4f4c1b /bin/bash </span>
+<span class="token punctuation">[</span>root@0926bd4f4c1b /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls </span>
+bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+<span class="token punctuation">[</span>root@0926bd4f4c1b /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ps -ef  </span>
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 03:26 pts/0    00:00:00 /bin/bash
+root        14     0  0 15:11 pts/1    00:00:00 /bin/bash
+root        28    14  0 15:11 pts/1    00:00:00 <span class="token function">ps</span> -ef
+
+<span class="token comment" spellcheck="true"># 方式二 </span>
+docker attach 容器id 
+<span class="token comment" spellcheck="true"># 测试 </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker attach 0926bd4f4c1b  </span>
+正在执行当前的代码<span class="token punctuation">..</span>.  
+
+
+<span class="token comment" spellcheck="true"># docker exec  # 进入容器后开启一个新的终端，可以在里面操作（常用）</span>
+<span class="token comment" spellcheck="true"># docker attach   # 进入容器正在执行的终端，不会启动新的进程！</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>从容器内拷贝文件到主机上  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">docker <span class="token function">cp</span> 容器id:容器内路径 目的的主机路径<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><em>拷贝是一个手动过程，未来我们使用 -v 卷的技术，可以实现，自动同步， /home  /home</em>    </p>
+<p><strong>学习方式：将我的所有命令全部敲一遍，自己记录笔记</strong></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200911234613.png" alt="">  </p>
+<pre class="line-numbers language-bash"><code class="language-bash">attach    Attach to a running containe                  <span class="token comment" spellcheck="true"># 当前sheT下 attach连接指定运行镜像 </span>
+build     Build an image from a Dockerfile              <span class="token comment" spellcheck="true"># 通过 Dockerfi1e定制镜像</span>
+commit    Create a new image from a container changes   <span class="token comment" spellcheck="true"># 提交当前容器为新的镜像  </span>
+<span class="token function">cp</span>        Copy files/ folders from the containers filesystem to the host path    <span class="token comment" spellcheck="true"># 从容器中拷贝指定文件或者目录到宿主机中 </span>
+create    Create a new container                        <span class="token comment" spellcheck="true"># 创建一个新的容器，同run，但不启动容器  </span>
+<span class="token function">diff</span>      Inspect changes on a container's filesystem   <span class="token comment" spellcheck="true"># 查看 docker容器变化     </span>
+events    Get real <span class="token function">time</span> events from the server          <span class="token comment" spellcheck="true"># 从 docker服务获取容器实时事件</span>
+<span class="token function">exec</span>      Run a <span class="token function">command</span> <span class="token keyword">in</span> an existing contain          <span class="token comment" spellcheck="true"># 在已存在的容器上运行命令  </span>
+<span class="token function">export</span>    Stream the contents of a container as a <span class="token function">tar</span> archive      <span class="token comment" spellcheck="true"># 导出容器的内容流作为一个tar归档文件[对应import]   </span>
+<span class="token function">history</span>   Show the <span class="token function">history</span> of an image                  <span class="token comment" spellcheck="true"># 展示一个镜像形成历史  </span>
+images    List imades                                   <span class="token comment" spellcheck="true"># 列出系统当前镜像  </span>
+<span class="token function">import</span>    Create a new filesystem image from the contents of a tarba1l   <span class="token comment" spellcheck="true"># 从tar包中的内容创建一个新的文件系统映像[对应 export] </span>
+info      Display system-wide information               <span class="token comment" spellcheck="true"># 显示系统相关信息  </span>
+inspect   Return1ow- level information on a container   <span class="token comment" spellcheck="true"># 查看容器详细信息  </span>
+<span class="token function">kill</span>      Kill a running container                      <span class="token comment" spellcheck="true"># ki11指定 docker 容器  </span>
+load      Load an image from a <span class="token function">tar</span> archive              <span class="token comment" spellcheck="true"># 从一个tar包中加载一个镜像[对应save]  </span>
+login     Register or Login to the docker registry server  <span class="token comment" spellcheck="true"># 注册或者登陆一个 docker源服务器  </span>
+<span class="token function">logout</span>    Log out from a Docker registry serve          <span class="token comment" spellcheck="true"># 并从当前 Docker registry退出  </span>
+logs      Fetch the logs of a container                 <span class="token comment" spellcheck="true"># 输出当前容器日志信息  </span>
+port      Lookup the public- facing port <span class="token function">which</span> is NAT- ed to PRIVATE_PORT <span class="token comment" spellcheck="true"># 查看映射端口对应的容器内部源端口</span>
+pause     Pause all processes within a container        <span class="token comment" spellcheck="true"># 暂停容器 </span>
+<span class="token function">ps</span>        List containers                               <span class="token comment" spellcheck="true"># 列出容器列表 </span>
+pull      Pull an image or a repository from the docker registry server <span class="token comment" spellcheck="true"># 从dockers镜像源服务器拉取指定镜像或者库镜像 </span>
+push      Push an image or a repos itory to the docker registry server  <span class="token comment" spellcheck="true"># 推送指定镜像或者库镜像至docker源服务器 </span>
+restart   Restart a running container                   <span class="token comment" spellcheck="true"># 重启运行的容器</span>
+<span class="token function">rm</span>        Remove one or <span class="token function">more</span> containers                 <span class="token comment" spellcheck="true"># 移除一个或者多个容器  </span>
+rmi       Remove one or <span class="token function">more</span> lmages                     <span class="token comment" spellcheck="true"># 移除一个或多个镜像[无容器使用该镜像才可删除，否则需删除相关容器才可继续或-f强制删除]  </span>
+run       Run a Command <span class="token keyword">in</span> a new container              <span class="token comment" spellcheck="true"># 创建一个新的容器并运行一个命令  </span>
+save      Save an image to a <span class="token function">tar</span> archive                <span class="token comment" spellcheck="true"># 保存一个镜像为一个tar包[对应 load]  </span>
+search    Search <span class="token keyword">for</span> an image on the Docker Hub         <span class="token comment" spellcheck="true"># 在 docker hub 中搜素镜像  </span>
+start     Start a stopped container                     <span class="token comment" spellcheck="true"># 启动容器 </span>
+stop      Stop a running containers                     <span class="token comment" spellcheck="true"># 停止容器  </span>
+tag       Image into a repository                       <span class="token comment" spellcheck="true"># 给源中镜像打标签</span>
+<span class="token function">top</span>       Lookup the running processes of a container   <span class="token comment" spellcheck="true"># 查看容器中运行的进程信息  </span>
+unpause   Unpause a paused containe                     <span class="token comment" spellcheck="true"># 取消暂停容器 </span>
+version   Show the docker version information           <span class="token comment" spellcheck="true"># 查看 docker版本号  </span>
+<span class="token function">wait</span>      Block <span class="token keyword">until</span> a container stops, <span class="token keyword">then</span> print its <span class="token keyword">exit</span> code      <span class="token comment" spellcheck="true"># 截取容器停止时的退出状态值</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em>docker的命令是十分多的，上面我们学习的那些都是最常用的容器和镜像的命令，之后我们还会学习很多命令</em>  </p>
+<p><em>接下来就是一堆的练习</em>  </p>
+<h3 id="作业练习"><a href="#作业练习" class="headerlink" title="作业练习"></a>作业练习</h3><blockquote>
+<p>Docker 安装Nginx    </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">1、搜索镜像  search, 建议大家去docker搜索，可以看到帮助文档 
+2、下载镜像  pull 
+3、运行测试 
+
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker images </span>
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nginx               latest              7e4d58f0e5f3        42 hours ago        133MB
+centos              latest              0d120b6ccaa8        4 weeks ago         215MB
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker ps </span>
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+
+<span class="token comment" spellcheck="true"># -d 后台运行  </span>
+<span class="token comment" spellcheck="true"># --name 给容器命名  </span>
+<span class="token comment" spellcheck="true"># -p 宿主机端口，容器内部端口  </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run -d --name nginx01 -p 3344:80 nginx </span>
+b113bcb2d783633c74e9486e4574439d211cc948042bb59cc40a5d46d07c6c26
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker ps </span>
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+b113bcb2d783        nginx               <span class="token string">"/docker-entrypoint.…"</span>   4 seconds ago       Up 3 seconds        0.0.0.0:3344-<span class="token operator">></span>80/tcp   nginx01
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># curl localhost:3344    </span>
+
+
+<span class="token comment" spellcheck="true"># 进去容器  </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker exec -it nginx01 /bin/bash </span>
+root@b113bcb2d783:/<span class="token comment" spellcheck="true"># whereis nginx </span>
+nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginx
+root@b113bcb2d783:/<span class="token comment" spellcheck="true"># cd /etc/nginx </span>
+root@b113bcb2d783:/etc/nginx<span class="token comment" spellcheck="true"># ls </span>
+conf.d    fastcgi_params    koi-utf  koi-win  mime.types  modules  nginx.conf  scgi_params    uwsgi_params  win-utf
+root@b113bcb2d783:/etc/nginx<span class="token comment" spellcheck="true">#   </span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>端口暴露的概念</strong> </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200912144129.png" alt="">     </p>
+<p>思考问题：我们每次改动nginx配置文件，都需要进入容器内部？十分的麻烦，我要是可以在容器外部提供一个映射路径，达到在容器修改文件名，容器内部就可以自动修改？ -v 数据卷的技术  </p>
+<blockquote>
+<p>作业：docker来装一个tomcat   </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 官方的使用 </span>
+<span class="token comment" spellcheck="true"># 我们之前的启动都是后台，停止了容器之后，容器还是可以查到  docker run -it --rm, 一般用来测试，用完就删除  </span>
+docker run -it --rm tomcat:9.0   
+
+<span class="token comment" spellcheck="true"># 下载启动 </span>
+docker pull tomcat  
+
+<span class="token comment" spellcheck="true"># 启动运行  </span>
+docker run -p --name tomcat01 -p 3344:8080 tomcat  
+
+<span class="token comment" spellcheck="true"># 测试访问没有问题  </span>
+
+
+<span class="token comment" spellcheck="true"># 进入容器 </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker exec -it tomcat01 /bin/bash </span>
+
+<span class="token comment" spellcheck="true"># 发现问题：1、linux命令少了   2、没有webapps  阿里云镜像的原因。默认是最小的镜像，所有不必要的都剔除掉。 </span>
+<span class="token comment" spellcheck="true"># 保证最小可运行的环境！</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>思考问题：我们以后要部署项目，如果每次都要进入容器是不是十分麻烦？我要是可以在容器外部提供一个映射路径，webapps，我们在外部放置项目，就自动同步到内部就好了！  </p>
+<blockquote>
+<p>作业：部署es+kibana  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># es 暴露的端口很多！ </span>
+<span class="token comment" spellcheck="true"># es 十分的耗内存  </span>
+<span class="token comment" spellcheck="true"># es 的数据一般需要放置到安全目录！挂载  </span>
+<span class="token comment" spellcheck="true"># --net somenetwork ？ 网络配置 </span>
+
+<span class="token comment" spellcheck="true"># 启动elasticsearch</span>
+docker run -d --name elasticsearch  -p 9200:9200 -p 9300:9300 -e <span class="token string">"discovery.type=single-node"</span> elasticsearch:7.6.2 
+
+<span class="token comment" spellcheck="true"># 启动了 linux就卡住了  docker stats 查看cpu的状态  </span>
+
+<span class="token comment" spellcheck="true"># 测试一下es是否成功   </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># curl localhost:9200</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"name"</span> <span class="token keyword">:</span> <span class="token string">"fe7bfb3cb3c3"</span>,
+  <span class="token string">"cluster_name"</span> <span class="token keyword">:</span> <span class="token string">"docker-cluster"</span>,
+  <span class="token string">"cluster_uuid"</span> <span class="token keyword">:</span> <span class="token string">"j0_NUj_cQwO_gE6YSEq1GA"</span>,
+  <span class="token string">"version"</span> <span class="token keyword">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"number"</span> <span class="token keyword">:</span> <span class="token string">"7.6.2"</span>,
+    <span class="token string">"build_flavor"</span> <span class="token keyword">:</span> <span class="token string">"default"</span>,
+    <span class="token string">"build_type"</span> <span class="token keyword">:</span> <span class="token string">"docker"</span>,
+    <span class="token string">"build_hash"</span> <span class="token keyword">:</span> <span class="token string">"ef48eb35cf30adf4db14086e8aabd07ef6fb113f"</span>,
+    <span class="token string">"build_date"</span> <span class="token keyword">:</span> <span class="token string">"2020-03-26T06:34:37.794943Z"</span>,
+    <span class="token string">"build_snapshot"</span> <span class="token keyword">:</span> false,
+    <span class="token string">"lucene_version"</span> <span class="token keyword">:</span> <span class="token string">"8.4.0"</span>,
+    <span class="token string">"minimum_wire_compatibility_version"</span> <span class="token keyword">:</span> <span class="token string">"6.8.0"</span>,
+    <span class="token string">"minimum_index_compatibility_version"</span> <span class="token keyword">:</span> <span class="token string">"6.0.0-beta1"</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">"tagline"</span> <span class="token keyword">:</span> <span class="token string">"You Know, for Search"</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment" spellcheck="true"># 赶紧关闭，增加内存的限制，修改配置文件 -e 环境配置修改  </span>
+
+docker run -d --name elasticsearch02 -p 9200:9200 -p 9300:9300 -e <span class="token string">"discovery.type=single-node"</span> -e ES_JAVA_OPTS<span class="token operator">=</span><span class="token string">'-Xms64m -Xmx512m'</span> elasticsearch:7.6.2 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200912200558.png" alt="">   </p>
+<blockquote>
+<p>作业：使用kibana连接es？思考网络如果才能连接过去！  </p>
+</blockquote>
+<h3 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h3><ul>
+<li>portainer（先用这个） </li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash">docker run -d -p 8088:9000 \
+ --restart<span class="token operator">=</span>always -v /var/run/docker.sock:/var/run/docker.sock --privileged<span class="token operator">=</span>true portainer/portainer <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>Rancher（CI/CD再用）  </li>
+</ul>
+<p><strong>什么是portainer？</strong><br>Docker图形化界面管理工具！提供一个后台面板供我们操作！不建议使用</p>
+<pre class="line-numbers language-bash"><code class="language-bash">docker run -d -p 8088:9000 \
+ --restart<span class="token operator">=</span>always -v /var/run/docker.sock:/var/run/docker.sock --privileged<span class="token operator">=</span>true portainer/portainer <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>访问测试：外网：<a href="http://ip:8088">http://ip:8088</a>  </p>
+<p>通过它来访问了：  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200912221609.png" alt=""></p>
+<p>选择本地的： </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200912221814.png" alt="">  </p>
+<p>进入之后的面板：  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200912221909.png" alt="">    </p>
+<p>可视化面板我们平时不会使用，大家自己测试玩玩即可。   </p>
+<blockquote>
+<p>对应的视频课：<a href="https://www.bilibili.com/video/BV1og4y1q7M4?p=7">狂神学Java</a></p>
 </blockquote>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -995,7 +1665,7 @@
             
                 
                     &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                            class="white-color">6.4k</span>&nbsp;字
+                            class="white-color">11k</span>&nbsp;字
                 
                 
                 <script>
@@ -1181,7 +1851,7 @@
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1599619895925')
+  navigator.serviceWorker.register('/sw.js?t=1599921859780')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
