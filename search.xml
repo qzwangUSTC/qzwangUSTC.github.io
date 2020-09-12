@@ -4,13 +4,27 @@
   
     
     <entry>
-      <title>Docker学习笔记/docker(三)</title>
+      <title>Docker学习笔记三</title>
       <link href="/posts/48969.html"/>
       <url>/posts/48969.html</url>
       
-        <content type="html"><![CDATA[<script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<h2 id="Docker镜像讲解"><a href="#Docker镜像讲解" class="headerlink" title="Docker镜像讲解"></a>Docker镜像讲解</h2><h3 id="镜像是什么"><a href="#镜像是什么" class="headerlink" title="镜像是什么"></a>镜像是什么</h3><h3 id="Docker镜像加载原理"><a href="#Docker镜像加载原理" class="headerlink" title="Docker镜像加载原理"></a>Docker镜像加载原理</h3><h3 id="分层理解"><a href="#分层理解" class="headerlink" title="分层理解"></a>分层理解</h3><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
+      <categories>
+          
+          <category> Docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Linux </tag>
+            
+        </tags>
       
     </entry>
     
