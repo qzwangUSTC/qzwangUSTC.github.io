@@ -475,12 +475,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
-                                </a>
-                            
                                 <a href="/tags/Docker/">
                                     <span class="chip bg-color">Docker</span>
+                                </a>
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -518,7 +518,7 @@
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        4.9k
+                        5k
                     </div>
                 
 
@@ -937,91 +937,21 @@ CMD /usr/local/apache-tomcat-9.0.22/bin/startup.sh <span class="token operator">
     <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://java.sun.com/xml/ns/j2ee 
         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>web-app</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-jsp"><code class="language-jsp"><%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head><link rel=manifest href=/manifest.json>
-<meta charset="utf-8">
-<title>hello, qzwang</title>
-<meta name="generator" content="Hexo 4.1.1"><link rel="alternate" href="/atom.xml" title="qzwangUSTC" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
-<body>
-Hello World!<br/>
-<%
-System.out.println("----my test web logs----");
-%>
-<script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1600176103197')
-    .then(function () {console.log('ServiceWorker Register Successfully.')})
-    .catch(function (e) {console.error(e)});
-}
-</script>
-        <script src="//cdn.jsdelivr.net/npm/js-base64/base64.min.js"></script>
-        <script>
-        const hasAttr = (e,a) => a.some(_=> e.attr(_)!==undefined);
-        $('a').each(function() {
-          const $this = $(this);
-          if(hasAttr($this,["data-fancybox","ignore-external-link"])) return;
-          const href = $this.attr('href');
-          if (href && href.match('^((http|https|thunder|qqdl|ed2k|Flashget|qbrowser|ftp|rtsp|mms)://)')) {
-            const strs = href.split('/');
-            if (strs.length >= 3) {
-                const host = strs[2];
-                if (host !== '' || window.location.host) {
-                    $this.attr('href', '/go.html?u='+Base64.encode(href)+'').attr('rel', 'external nofollow noopener noreferrer');
-                    if (true) {
-                        $this.attr('target', '_blank');
-                    }
-                }
-            }
-          }
-        });
-        </script>
-        <script src="//cdn.jsdelivr.net/npm/js-base64/base64.min.js"></script>
-        <script>
-        const hasAttr = (e,a) => a.some(_=> e.attr(_)!==undefined);
-        $('a').each(function() {
-          const $this = $(this);
-          if(hasAttr($this,["data-fancybox","ignore-external-link"])) return;
-          const href = $this.attr('href');
-          if (href && href.match('^((http|https|thunder|qqdl|ed2k|Flashget|qbrowser|ftp|rtsp|mms)://)')) {
-            const strs = href.split('/');
-            if (strs.length >= 3) {
-                const host = strs[2];
-                if (host !== '' || window.location.host) {
-                    $this.attr('href', '/go.html?u='+Base64.encode(href)+'').attr('rel', 'external nofollow noopener noreferrer');
-                    if (true) {
-                        $this.attr('target', '_blank');
-                    }
-                }
-            }
-          }
-        });
-        </script>
-        <script src="//cdn.jsdelivr.net/npm/js-base64/base64.min.js"></script>
-        <script>
-        const hasAttr = (e,a) => a.some(_=> e.attr(_)!==undefined);
-        $('a').each(function() {
-          const $this = $(this);
-          if(hasAttr($this,["data-fancybox","ignore-external-link"])) return;
-          const href = $this.attr('href');
-          if (href && href.match('^((http|https|thunder|qqdl|ed2k|Flashget|qbrowser|ftp|rtsp|mms)://)')) {
-            const strs = href.split('/');
-            if (strs.length >= 3) {
-                const host = strs[2];
-                if (host !== '' || window.location.host) {
-                    $this.attr('href', '/go.html?u='+Base64.encode(href)+'').attr('rel', 'external nofollow noopener noreferrer');
-                    if (true) {
-                        $this.attr('target', '_blank');
-                    }
-                }
-            }
-          }
-        });
-        </script></body>
-</html><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token operator">&lt;</span>%@ page language<span class="token operator">=</span><span class="token string">"java"</span> contentType<span class="token operator">=</span><span class="token string">"text/html; charset=UTF-8"</span>
+    pageEncoding<span class="token operator">=</span><span class="token string">"UTF-8"</span>%<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE html<span class="token operator">></span>
+<span class="token operator">&lt;</span>html<span class="token operator">></span>
+<span class="token operator">&lt;</span>head<span class="token operator">></span>
+<span class="token operator">&lt;</span>meta charset<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>title<span class="token operator">></span>hello, qzwang<span class="token operator">&lt;</span>/title<span class="token operator">></span>
+<span class="token operator">&lt;</span>/head<span class="token operator">></span>
+<span class="token operator">&lt;</span>body<span class="token operator">></span>
+Hello World<span class="token operator">!</span><span class="token operator">&lt;</span>br/<span class="token operator">></span>
+<span class="token operator">&lt;</span>%
+System.out.println<span class="token punctuation">(</span><span class="token string">"----my test web logs----"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+%<span class="token operator">></span>
+<span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/html<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915195703.png" alt="">  </p>
 <p>发现：项目部署成功，可以直接访问ok！</p>
 <p>我们以后开发的步骤：需要掌握Dockerfile的编写！我们之后的一切都是使用docker镜像来发布运行！   </p>
@@ -1175,12 +1105,12 @@ An image does not exist locally with the tag: qzwangustc/diytomcat
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
-                                </a>
-                            
                                 <a href="/tags/Docker/">
                                     <span class="chip bg-color">Docker</span>
+                                </a>
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -1296,12 +1226,12 @@ An image does not exist locally with the tag: qzwangustc/diytomcat
                     
                         <div class="card-action article-tags">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
-                                </a>
-                            
                                 <a href="/tags/Docker/">
                                     <span class="chip bg-color">Docker</span>
+                                </a>
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -1743,7 +1673,12 @@ An image does not exist locally with the tag: qzwangustc/diytomcat
     <script src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/libs/instantpage/instantpage.js" type="module"></script>
 
 
-
+<script>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js?t=1600176307527')
+    .then(function () {console.log('ServiceWorker Register Successfully.')})
+    .catch(function (e) {console.error(e)});
+}
+</script>
         <script src="//cdn.jsdelivr.net/npm/js-base64/base64.min.js"></script>
         <script>
         const hasAttr = (e,a) => a.some(_=> e.attr(_)!==undefined);
