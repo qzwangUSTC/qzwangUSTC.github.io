@@ -475,12 +475,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Docker/">
-                                    <span class="chip bg-color">Docker</span>
-                                </a>
-                            
                                 <a href="/tags/Linux/">
                                     <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
                                 </a>
                             
                         </div>
@@ -511,14 +511,14 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2020-09-13
+                        2020-09-15
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.6k
+                        4.9k
                     </div>
                 
 
@@ -609,6 +609,487 @@
 <p>这一层就是我们通常说的容器层，容器之下的都叫镜像层！    </p>
 <p>如何提交一个自己的镜像？  </p>
 <blockquote>
+<p>commit镜像  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">docker commit 提交容器成为一个新的副本  
+
+<span class="token comment" spellcheck="true"># 命令和git原理类似  </span>
+docker commit -m<span class="token operator">=</span><span class="token string">"提交的描述信息"</span> -a<span class="token operator">=</span><span class="token string">"作者"</span> 容器id 目标镜像名:<span class="token punctuation">[</span>TAG<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>实战测试  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 1、启动一个默认的tomcat  </span>
+
+<span class="token comment" spellcheck="true"># 2、发现这个默认的tomcat 是没有webapps应用，镜像的原因，官方的镜像默认 webapps下面是没有文件的！    </span>
+
+<span class="token comment" spellcheck="true"># 3、我自己拷贝进去了基本的文件   </span>
+
+<span class="token comment" spellcheck="true"># 4、将我们操作过的容器通过commit提交为一个镜像！我们以后就使用我们修改过的镜像即可，这就是我们自己的一个修改的镜像</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200913224551.png" alt=""></p>
+<p>学习方式说明：理解概念，但是一定要实践，最后实践和理论相结合一次搞定这个知识。 </p>
+<pre class="line-numbers language-bash"><code class="language-bash">如果你想要保存当前容器的状态，就可以通过commit来提交，并获得一个镜像，就好比我们以前学习VM时候，快照！<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>到了这里才算是入门Docker! </p>
+<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><h3 id="什么是容器数据卷"><a href="#什么是容器数据卷" class="headerlink" title="什么是容器数据卷"></a>什么是容器数据卷</h3><blockquote>
+<p>docker的理念回顾  </p>
+</blockquote>
+<p>将应用和环境打包成一个镜像  </p>
+<p>数据？如果数据都在容器中，那么我们容器删除，数据就会丢失！<em>需求：数据可以持久化</em>  </p>
+<p>MySQL，容器删了，删库跑路！需求：MySQL数据可以存储在本地！  </p>
+<p>容器之间可以有一个数据共享的技术！Docker容器中产生的数据，同步到本地！ </p>
+<p>这就是卷技术！目录的挂载，将我们容器内的目录，挂载到Linux上面！ </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200913234419.png" alt="">  </p>
+<p><strong>总结一句话：容器的持久化和同步操作！容器间也是可以数据共享的</strong>  </p>
+<h3 id="使用数据卷"><a href="#使用数据卷" class="headerlink" title="使用数据卷"></a>使用数据卷</h3><blockquote>
+<p>方式一：直接使用命令来挂载 -v    </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">docker run -it -v 主机目录:容器内目录   
+
+<span class="token comment" spellcheck="true"># 测试  </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run -it -v /home/test:/home centos /bin/bash   </span>
+
+<span class="token comment" spellcheck="true"># 启动起来之后我们可以通过 docker inspect 容器id  </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914095927.png" alt="">  </p>
+<p>测试文件的同步 </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914100925.png" alt="">  </p>
+<p>再来测试！  </p>
+<p>1、停止容器 </p>
+<p>2、宿主机上修改文件   </p>
+<p>3、启动容器</p>
+<p>4、容器内的数据依旧是同步的    </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914102246.png" alt="">  </p>
+<p>好处：我们以后修改只需要在本地修改即可，容器内会自动同步！  </p>
+<h3 id="实战：安装MySQL"><a href="#实战：安装MySQL" class="headerlink" title="实战：安装MySQL"></a>实战：安装MySQL</h3><p>思考：MySQL的数据持久化问题！  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 下载镜像</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker pull mysql </span>
+
+<span class="token comment" spellcheck="true"># 运行容器，需要做数据挂载！  # 安装启动mysql，需要配置密码的，这是要注意点！  </span>
+<span class="token comment" spellcheck="true"># 官方测试： docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag  </span>
+
+<span class="token comment" spellcheck="true"># 启动我们的mysql </span>
+-d 后台运行
+-p 端口映射  
+-v 卷挂载 
+-e 环境配置  
+--name 容器名字 
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run -d -p 3344:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name=mysql01 mysq</span>
+
+<span class="token comment" spellcheck="true"># 启动成功之后，我们在本地使用 sqlyog 连接测试一下 </span>
+<span class="token comment" spellcheck="true"># sqlyog-连接到服务器的3344 --- 3344 和 容器内的3306映射，这个时候我们就可以连接上了！  </span>
+
+<span class="token comment" spellcheck="true"># 在本地测试创建一个数据库，查看一下我们映射的路径是否ok!   </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>假设我们将容器删除</p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914141450.png" alt="">  </p>
+<p>发现，我们挂载到本地的数据卷依旧没有丢失，这就实现了容器持久化功能！</p>
+<h3 id="具名和匿名挂载"><a href="#具名和匿名挂载" class="headerlink" title="具名和匿名挂载"></a>具名和匿名挂载</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 匿名挂载 </span>
+-v 容器内路径<span class="token operator">!</span>  
+docker run -d -P --name nginx01 -v /etc/nginx nginx     
+
+<span class="token comment" spellcheck="true"># 查看所有的 volume的情况 </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker volume ls </span>
+DRIVER              VOLUME NAME
+local               83c8dbe25a1d9355610983389df565eed8651d6edb13e004e482e57e0e9c0e40
+local               98c7840efe1bde66f110553f7f9ef00f8095fc6b111f61f2adc38dcbf0f3d418
+local               faa9a1a228a4ea3efcdf977aee04ad27ed25062fa7d378032d155a7316bb2bad
+
+<span class="token comment" spellcheck="true"># 这里发现，这种就是匿名挂载，我们在 -v 只写了容器内的路径，没有写容器外的路径  </span>
+
+<span class="token comment" spellcheck="true"># 具名挂载 </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx nginx </span>
+e6b52918b37237e6fba4a367690e139da88edc187a0851cba509fd0b573d2f03
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker volume ls </span>
+DRIVER              VOLUME NAME
+local               juming-nginx
+
+<span class="token comment" spellcheck="true"># 通过 -v 卷名:容器内路径 </span>
+<span class="token comment" spellcheck="true"># 查看一下这个卷</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914154957.png" alt="">  </p>
+<p>所有的docker容器内的卷，没有指定目录的情况下都是在 <em>/var/lib/docker/volumes/xxxxx/_data</em> </p>
+<p>我们通过具名挂载可以方便的找到我们的一个卷，大多数情况下在使用的<em>具名挂载</em>  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 如何确定是具名挂载还是匿名挂载，还是指定路径挂载！  </span>
+-v 容器内路径           <span class="token comment" spellcheck="true"># 匿名挂载  </span>
+-v 卷名:容器内路径      <span class="token comment" spellcheck="true"># 具名挂载 </span>
+-v /宿主机路径:容器内路径  <span class="token comment" spellcheck="true"># 指定路径挂载</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>拓展  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 通过 -v 容器内路径:ro  rw  改变独写权限 </span>
+ro   <span class="token function">readonly</span>   <span class="token comment" spellcheck="true"># 只读 </span>
+rw   readwrite  <span class="token comment" spellcheck="true"># 可读可写 </span>
+
+<span class="token comment" spellcheck="true"># 一旦设置了这个容器权限，容器对我们挂载出来的内容就有限定了！ </span>
+docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:ro nginx 
+docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:rw nginx  
+
+<span class="token comment" spellcheck="true"># ro 只要看到ro就说明这个路径只能通过宿主机来操作，容器内部是无法操作！</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="初识Dockerfile"><a href="#初识Dockerfile" class="headerlink" title="初识Dockerfile"></a>初识Dockerfile</h3><p>Dockerfile就是用来构建docker镜像的构建文件！命令脚本！先体验一下！  </p>
+<p>通过这个脚本可以生成镜像，镜像是一层一层的，脚本一个个的命令，每个命令都是一层！ </p>
+<blockquote>
+<p>方式二：</p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 创建一个dockerfile文件，名字可以随机，建议 Dockerfile  </span>
+<span class="token comment" spellcheck="true"># 文件中的内容  指令（大写）  参数  </span>
+
+FROM centos
+
+VOLUME <span class="token punctuation">[</span><span class="token string">"volume01"</span>, <span class="token string">"volume02"</span><span class="token punctuation">]</span>
+
+CMD <span class="token keyword">echo</span> <span class="token string">"---end---"</span>
+
+CMD /bin/bash
+
+<span class="token comment" spellcheck="true"># 这里的每个命令，就是镜像的一层</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914195557.png" alt="">  </p>
+<p>启动自己写的容器  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914200539.png" alt=""></p>
+<p>挂载方式  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914201028.png" alt=""> </p>
+<p>查看一下挂载的路径 </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914201305.png" alt=""> </p>
+<p>测试一下刚才的文件是否同步出去了！ </p>
+<p>这种方式我们未来使用的十分哆哦哦哦，因为我们通常会构建自己的镜像！ </p>
+<p>假设构建镜像时没有挂载卷，要手动镜像挂载 -v 卷名:容器内路径！</p>
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><p>多个mysql同步数据！  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914213203.png" alt="">  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914215205.png" alt=""> </p>
+<p>docker01 创建的内容同步到了docker02上面</p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914221334.png" alt=""> </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914223416.png" alt="">  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 测试，可以删除docker01，查看一下docker02和docker03是否还可以访问这个文件  </span>
+<span class="token comment" spellcheck="true"># 测试依旧可以访问   </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200914225024.png" alt="">  </p>
+<blockquote>
+<p>多个mysql实现数据共享   </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run -d -p 3344:3306 -v /etc/mysql/conf.d -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name=mysql01 mysql  </span>
+
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run -d -p 8080:3306 -e MYSQL_ROOT_PASSWORD=123456 --name=mysql02 --volumes-from mysql01 mysql </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>结论：</strong> </p>
+<p>容器之间配置新信息的传递，数据卷容器的声明周期一直持续到没有容器使用为止。</p>
+<p>但是一旦你持久化到了本地，这个时候，本地的数据是不会删除的！</p>
+<h2 id="DcokerFile"><a href="#DcokerFile" class="headerlink" title="DcokerFile"></a>DcokerFile</h2><h3 id="DcokerFile介绍"><a href="#DcokerFile介绍" class="headerlink" title="DcokerFile介绍"></a>DcokerFile介绍</h3><p>dockerfile 是用来构建docker镜像的文件！命令参数脚本！  </p>
+<p>构建步骤： </p>
+<p>1、编写一个dockerfile文件  </p>
+<p>2、docker buuild 构建成为一个镜像 </p>
+<p>3、docker run 运行镜像 </p>
+<p>4、docker push 发布镜像（DockerHub、阿里云镜像仓库）</p>
+<p>查看一下官方是怎么做的？  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915092407.png" alt="">    </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915092622.png" alt="">  </p>
+<p>很多官方镜像都是基础包，很多功能没有，我们通常会自己搭建自己的镜像！  </p>
+<p>官方既然可以制作镜像，那我们也可以！  </p>
+<h3 id="DockerFile构建过程"><a href="#DockerFile构建过程" class="headerlink" title="DockerFile构建过程"></a>DockerFile构建过程</h3><p>基础知识：  </p>
+<p>1、每个保留关键字（指令）都必须是大写   </p>
+<p>2、执行从上到下顺序执行 </p>
+<p>3、#表示注释 </p>
+<p>4、每一个指令都会创建提交一个新的镜像层，并提交！   </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915101336.png" alt="">  </p>
+<p>dockefile是面向开发的，我们以后要发布项目，做镜像，就需要编写dockerfile文件，这个文件十分简单！  </p>
+<p>Docker镜像逐渐成为企业交付的标准，必须要掌握！  </p>
+<p>步骤：开发，部署，运维。。。缺一不可！  </p>
+<p>DockerFile：构建文件，定义了一切的步骤，源代码 </p>
+<p>DockerImages：通过DockerFile构建生成的镜像，最终发布和运行的产品！  </p>
+<p>Docker容器：容器就是镜像运行起来提供服务器  </p>
+<h3 id="DockerFile的指令"><a href="#DockerFile的指令" class="headerlink" title="DockerFile的指令"></a>DockerFile的指令</h3><p>以前的话我们就是使用别人的，现在我们知道了这些指令后，我们来练习自己写一个镜像！  </p>
+<pre class="line-numbers language-bash"><code class="language-bash">FROM              <span class="token comment" spellcheck="true"># 基础镜像，一切从这里开始构建 </span>
+MAINTAINER        <span class="token comment" spellcheck="true"># 镜像是谁写的，姓名+邮箱  </span>
+RUN               <span class="token comment" spellcheck="true"># 镜像构建的时候需要运行的命令  </span>
+ADD               <span class="token comment" spellcheck="true"># 步骤，tomcat镜像，这个tomcat压缩包！添加内容 </span>
+WORKDIR           <span class="token comment" spellcheck="true"># 镜像的工作目录  </span>
+VOLUME            <span class="token comment" spellcheck="true"># 挂载的目录  </span>
+EXPOSE            <span class="token comment" spellcheck="true"># 暴露的端口号  </span>
+CMD               <span class="token comment" spellcheck="true"># 指定这个容器启动的时候要运行的命令，只有最后一个会生效，可被替代  </span>
+ENTRYPOINT        <span class="token comment" spellcheck="true"># 指定这个容器启动的时候要运行的命令，可以追加命令   </span>
+ONBUILD           <span class="token comment" spellcheck="true"># 当构建一个被继承 DockerFile 这个时候就会运行 ONBUILD 的指令，触发指令。</span>
+COPY              <span class="token comment" spellcheck="true"># 类似ADD，将我们文件拷贝到镜像中  </span>
+ENY               <span class="token comment" spellcheck="true"># 构建的时候设置环境变量</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915102323.png" alt="">   </p>
+<h3 id="实战测试"><a href="#实战测试" class="headerlink" title="实战测试"></a>实战测试</h3><p>Docker Hub中99%镜像都是从这个基础镜像过来的FROM scratch，然后配置需要的软件和配置来进行的构建 </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915110959.png" alt="">  </p>
+<blockquote>
+<p>创建一个自己的centos  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 1、编写dockerfile文件 </span>
+FROM centos  
+MAINTAINER qzwang<span class="token operator">&lt;</span>qzwang96@mail.ustc.edu.com<span class="token operator">></span>  
+
+ENV MYPATH /usr/local
+WORKDIR <span class="token variable">$MYPATH</span>   
+
+RUN yum -y <span class="token function">install</span> vim  
+RUN yum -y <span class="token function">install</span> net-tools 
+
+EXPOSE 80  
+
+CMD <span class="token keyword">echo</span> <span class="token variable">$MYPATH</span> 
+CMD <span class="token keyword">echo</span> <span class="token string">"----end------"</span> 
+CMD /bin/bash  
+<span class="token punctuation">[</span>root@iZ2zedqh9q8  
+
+
+<span class="token comment" spellcheck="true"># 2、通过这个文件构建镜像  </span>
+<span class="token comment" spellcheck="true"># 命令 docker build -f dockerfile文件路径 -t 镜像名:[tag] . </span>
+Successfully built 9b9d5ce5b689
+Successfully tagged mycentos:0.1 
+
+<span class="token comment" spellcheck="true"># 3、测试运行  </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对比：之前的原生的centos  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915115744.png" alt="">  </p>
+<p>我们增加之后的镜像  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915115923.png" alt="">  </p>
+<p>我们可以列出本地镜像的变更历史  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915121046.png" alt="">  </p>
+<p>我们平时拿到一个镜像，可以研究一下它是怎么做的了？  </p>
+<blockquote>
+<p>CMD和ENTRYPOINT的区别  </p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">CMD               <span class="token comment" spellcheck="true"># 指定这个容器启动的时候要运行的命令，只有最后一个会生效，可被替代  </span>
+ENTRYPOINT        <span class="token comment" spellcheck="true"># 指定这个容器启动的时候要运行的命令，可以追加命令  </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>测试cmd  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 编写 dockerfile 文件</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z dockerfile<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim docker-cmd-test </span>
+FROM centos 
+CMD <span class="token punctuation">[</span><span class="token string">"ls"</span>, <span class="token string">"-a"</span><span class="token punctuation">]</span>  
+
+<span class="token comment" spellcheck="true"># 构建镜像</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z dockerfile<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker build -f docker-cmd-test -t cmdtest .   </span>
+
+<span class="token comment" spellcheck="true"># run运行，发现我们的ls -a 命令生效  </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z dockerfile<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run cmdtest</span>
+<span class="token keyword">.</span>
+<span class="token punctuation">..</span>
+.dockerenv
+bin
+dev
+etc
+home
+lib
+lib64
+lost+found
+media
+mnt
+opt
+
+<span class="token comment" spellcheck="true"># 想追加一个命令 -l ls-al</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z dockerfile<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run cmdtest -l </span>
+docker: Error response from daemon: OCI runtime create failed: container_linux.go:349: starting container process caused <span class="token string">"exec: \"-l\": executable file not found in <span class="token variable">$PATH</span>"</span><span class="token keyword">:</span> unknown.
+ERRO<span class="token punctuation">[</span>0000<span class="token punctuation">]</span> error waiting <span class="token keyword">for</span> container: context canceled 
+
+<span class="token comment" spellcheck="true"># cmd的情况下 -l 替换了CMD ["ls", "-a"]命令，-l不是命令所以报错！  </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>测试ENTRYPOINT  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z dockerfile<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim docker-entrypoint-test </span>
+FROM centos 
+ENTRYPOINT <span class="token punctuation">[</span><span class="token string">"ls"</span>, <span class="token string">"-a"</span><span class="token punctuation">]</span>  
+
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z dockerfile<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker build -f docker-entrypoint-test -t entrypoint-test .</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z dockerfile<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run entrypoint-test </span>
+<span class="token keyword">.</span>
+<span class="token punctuation">..</span>
+.dockerenv
+bin
+dev
+etc
+home
+lib
+lib64 
+
+<span class="token comment" spellcheck="true"># 我们追加的命令，是直接拼接在我们的 ENTRYPOINT 命令的后面！</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z dockerfile<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run entrypoint-test -l</span>
+total 56
+drwxr-xr-x  1 root root 4096 Sep 15 06:41 <span class="token keyword">.</span>
+drwxr-xr-x  1 root root 4096 Sep 15 06:41 <span class="token punctuation">..</span>
+-rwxr-xr-x  1 root root    0 Sep 15 06:41 .dockerenv
+lrwxrwxrwx  1 root root    7 May 11  2019 bin -<span class="token operator">></span> usr/bin
+drwxr-xr-x  5 root root  340 Sep 15 06:41 dev
+drwxr-xr-x  1 root root 4096 Sep 15 06:41 etc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Dockerfile中很多命令都十分相似，我们需要了解它们的区别，我们最好的学习就是对比它们然后测试效果！  </p>
+<h3 id="实战：Tomcat镜像"><a href="#实战：Tomcat镜像" class="headerlink" title="实战：Tomcat镜像"></a>实战：Tomcat镜像</h3><p>1、准备镜像文件 tomcat压缩包，jdk的压缩包    </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915165630.png" alt="">  </p>
+<p>2、编写dockerfile文件，官方命名<em>Dockerfile</em>，build会自动寻找这个文件，就不需要-f指定了！ </p>
+<pre class="line-numbers language-bash"><code class="language-bash">FROM centos
+MAINTAINER qzwang<span class="token operator">&lt;</span>qzwanag96@mail.ustc.edu.cn<span class="token operator">></span>
+
+COPY readme.txt /usr/local/readme.txt
+
+ADD jdk-8u261-linux-x64.tar.gz /usr/local/
+ADD apache-tomcat-9.0.22.tar.gz /usr/local/
+
+RUN yum -y <span class="token function">install</span> vim
+
+ENV MYPATH /usr/local
+WORKDIR <span class="token variable">$MYPATH</span>
+
+ENV JAVA_HOME /usr/local/jdk1.8.0_261
+ENV CLASSPATH <span class="token variable">$JAVA_HOME</span>/lib/dt.jar:<span class="token variable">$JAVA_HOME</span>/lib/tools.jar
+ENV CATALINA_HOME /usr/local/apache-tomcat-9.0.22
+ENV CATALINA_BASH /usr/local/apache-tomcat-9.0.22
+ENV PATH <span class="token variable">$PATH</span><span class="token keyword">:</span><span class="token variable">$JAVA_HOME</span>/bin:<span class="token variable">$CATALINA_HOME</span>/lib:<span class="token variable">$CATALINA_HOME</span>/bin
+
+EXPOSE 8080
+
+CMD /usr/local/apache-tomcat-9.0.22/bin/startup.sh <span class="token operator">&amp;&amp;</span> <span class="token function">tail</span> -F /usr/local/apache-tomcat-9.0.22/bin/logs/catalina.out<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>3、构建镜像  </p>
+<pre class="line-numbers language-bash"><code class="language-bash">docker build -t diytomcat <span class="token keyword">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>4、启动镜像 </p>
+<p>5、访问测试   </p>
+<p>6、发布项目（由于做了卷挂载，我们直接在本地编写项目就可以发布了！）  </p>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web-app</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2.4<span class="token punctuation">"</span></span> 
+    <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://java.sun.com/xml/ns/j2ee<span class="token punctuation">"</span></span> 
+    <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://java.sun.com/xml/ns/j2ee 
+        http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>web-app</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-jsp"><code class="language-jsp"><%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head><link rel=manifest href=/manifest.json>
+<meta charset="utf-8">
+<title>hello, qzwang</title>
+<meta name="generator" content="Hexo 4.1.1"><link rel="alternate" href="/atom.xml" title="qzwangUSTC" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<body>
+Hello World!<br/>
+<%
+System.out.println("----my test web logs----");
+%>
+<script>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js?t=1600176103197')
+    .then(function () {console.log('ServiceWorker Register Successfully.')})
+    .catch(function (e) {console.error(e)});
+}
+</script>
+        <script src="//cdn.jsdelivr.net/npm/js-base64/base64.min.js"></script>
+        <script>
+        const hasAttr = (e,a) => a.some(_=> e.attr(_)!==undefined);
+        $('a').each(function() {
+          const $this = $(this);
+          if(hasAttr($this,["data-fancybox","ignore-external-link"])) return;
+          const href = $this.attr('href');
+          if (href && href.match('^((http|https|thunder|qqdl|ed2k|Flashget|qbrowser|ftp|rtsp|mms)://)')) {
+            const strs = href.split('/');
+            if (strs.length >= 3) {
+                const host = strs[2];
+                if (host !== '' || window.location.host) {
+                    $this.attr('href', '/go.html?u='+Base64.encode(href)+'').attr('rel', 'external nofollow noopener noreferrer');
+                    if (true) {
+                        $this.attr('target', '_blank');
+                    }
+                }
+            }
+          }
+        });
+        </script>
+        <script src="//cdn.jsdelivr.net/npm/js-base64/base64.min.js"></script>
+        <script>
+        const hasAttr = (e,a) => a.some(_=> e.attr(_)!==undefined);
+        $('a').each(function() {
+          const $this = $(this);
+          if(hasAttr($this,["data-fancybox","ignore-external-link"])) return;
+          const href = $this.attr('href');
+          if (href && href.match('^((http|https|thunder|qqdl|ed2k|Flashget|qbrowser|ftp|rtsp|mms)://)')) {
+            const strs = href.split('/');
+            if (strs.length >= 3) {
+                const host = strs[2];
+                if (host !== '' || window.location.host) {
+                    $this.attr('href', '/go.html?u='+Base64.encode(href)+'').attr('rel', 'external nofollow noopener noreferrer');
+                    if (true) {
+                        $this.attr('target', '_blank');
+                    }
+                }
+            }
+          }
+        });
+        </script>
+        <script src="//cdn.jsdelivr.net/npm/js-base64/base64.min.js"></script>
+        <script>
+        const hasAttr = (e,a) => a.some(_=> e.attr(_)!==undefined);
+        $('a').each(function() {
+          const $this = $(this);
+          if(hasAttr($this,["data-fancybox","ignore-external-link"])) return;
+          const href = $this.attr('href');
+          if (href && href.match('^((http|https|thunder|qqdl|ed2k|Flashget|qbrowser|ftp|rtsp|mms)://)')) {
+            const strs = href.split('/');
+            if (strs.length >= 3) {
+                const host = strs[2];
+                if (host !== '' || window.location.host) {
+                    $this.attr('href', '/go.html?u='+Base64.encode(href)+'').attr('rel', 'external nofollow noopener noreferrer');
+                    if (true) {
+                        $this.attr('target', '_blank');
+                    }
+                }
+            }
+          }
+        });
+        </script></body>
+</html><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915195703.png" alt="">  </p>
+<p>发现：项目部署成功，可以直接访问ok！</p>
+<p>我们以后开发的步骤：需要掌握Dockerfile的编写！我们之后的一切都是使用docker镜像来发布运行！   </p>
+<h3 id="发布自己的镜像"><a href="#发布自己的镜像" class="headerlink" title="发布自己的镜像"></a>发布自己的镜像</h3><blockquote>
+<p>DockerHub   </p>
+</blockquote>
+<p>1、地址：<a href="https://hub.docker.com/，注册自己的账号">https://hub.docker.com/，注册自己的账号</a>   </p>
+<p>2、确定这个账号可以登录 </p>
+<p>3、在我们服务器上提交自己的镜像  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z tomcat<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker login --help</span>
+
+Usage:    docker login <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span> <span class="token punctuation">[</span>SERVER<span class="token punctuation">]</span>
+
+Log <span class="token keyword">in</span> to a Docker registry.
+If no server is specified, the default is defined by the daemon.
+
+Options:
+  -p, --password string   Password
+      --password-stdin    Take the password from stdin
+  -u, --username string   Username
+
+
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z tomcat<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker login -u qzwangustc</span>
+Password: 
+WARNING<span class="token operator">!</span> Your password will be stored unencrypted <span class="token keyword">in</span> /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/<span class="token comment" spellcheck="true">#credentials-store</span>
+
+Login Succeeded
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>4、登录完毕后就可以提交镜像了，就是一步 docker push  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># push自己的镜像到服务器上</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z tomcat<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker push diytomcat</span>
+The push refers to repository <span class="token punctuation">[</span>docker.io/library/diytomcat<span class="token punctuation">]</span>
+55bf55af8c96: Preparing 
+c4cff1d0527b: Preparing 
+a18f72857821: Preparing 
+7c510a480aec: Preparing 
+291f6e44771a: Preparing 
+denied: requested access to the resource is denied  
+
+<span class="token comment" spellcheck="true"># push镜像的问题？</span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z tomcat<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker push diytomcat:1.0</span>
+The push refers to repository <span class="token punctuation">[</span>docker.io/qzwangustc/diytomcat<span class="token punctuation">]</span>
+An image does not exist locally with the tag: qzwangustc/diytomcat
+
+
+<span class="token comment" spellcheck="true"># 解决，增加一个 tag  </span>
+<span class="token punctuation">[</span>root@iZ2zedqh9q8l3gqt7244r0Z tomcat<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker tag 14acda442825 qzwangustc/tomcat:1.0</span>
+
+<span class="token comment" spellcheck="true"># docker push 上去即可！自己发布的镜像的时候尽量带上版本号  </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915203621.png" alt=""> </p>
+<p>提交的时候也是按照镜像的层级来提交的！ </p>
+<blockquote>
+<p>阿里云镜像服务上  </p>
+</blockquote>
+<p>1、登录阿里云 </p>
+<p>2、找到容器镜像服务  </p>
+<p>3、创建命名空间  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915205054.png" alt=""> </p>
+<p>4、创建容器镜像  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915205313.png" alt=""> </p>
+<p>5、浏览阿里云 </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915205449.png" alt=""> </p>
+<p>阿里云容器镜像就参考官方地址！</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200915211633.png" alt=""> </p>
+<h2 id="Docker网络"><a href="#Docker网络" class="headerlink" title="Docker网络"></a>Docker网络</h2><p>后面的还没看，以后要用到后面的知识再看。。。。。</p>
+<blockquote>
 <p>参考：<a href="https://www.bilibili.com/video/BV1og4y1q7M4?p=18">狂神说Java</a></p>
 </blockquote>
 <script>
@@ -694,12 +1175,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Docker/">
-                                    <span class="chip bg-color">Docker</span>
-                                </a>
-                            
                                 <a href="/tags/Linux/">
                                     <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
                                 </a>
                             
                         </div>
@@ -815,12 +1296,12 @@
                     
                         <div class="card-action article-tags">
                             
-                                <a href="/tags/Docker/">
-                                    <span class="chip bg-color">Docker</span>
-                                </a>
-                            
                                 <a href="/tags/Linux/">
                                     <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
                                 </a>
                             
                         </div>
@@ -1077,7 +1558,7 @@
             
                 
                     &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                            class="white-color">12.5k</span>&nbsp;字
+                            class="white-color">15.9k</span>&nbsp;字
                 
                 
                 <script>
@@ -1262,12 +1743,7 @@
     <script src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/libs/instantpage/instantpage.js" type="module"></script>
 
 
-<script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1599983659897')
-    .then(function () {console.log('ServiceWorker Register Successfully.')})
-    .catch(function (e) {console.error(e)});
-}
-</script>
+
         <script src="//cdn.jsdelivr.net/npm/js-base64/base64.min.js"></script>
         <script>
         const hasAttr = (e,a) => a.some(_=> e.attr(_)!==undefined);
