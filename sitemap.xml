@@ -93,14 +93,14 @@
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/categories/index.html</loc>
+    <loc>https://qzwangustc.github.io/archives/index.html</loc>
     
     <lastmod>2020-09-04</lastmod>
     
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/archives/index.html</loc>
+    <loc>https://qzwangustc.github.io/categories/index.html</loc>
     
     <lastmod>2020-09-04</lastmod>
     
@@ -144,14 +144,7 @@
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/tags/%E6%9C%B1%E4%B8%80%E6%97%A6/</loc>
-    <lastmod>2020-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://qzwangustc.github.io/tags/%E7%9F%AD%E8%A7%86%E9%A2%91%E6%96%87%E6%91%98/</loc>
+    <loc>https://qzwangustc.github.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -179,7 +172,14 @@
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <loc>https://qzwangustc.github.io/tags/%E6%9C%B1%E4%B8%80%E6%97%A6/</loc>
+    <lastmod>2020-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://qzwangustc.github.io/tags/%E7%9F%AD%E8%A7%86%E9%A2%91%E6%96%87%E6%91%98/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -195,7 +195,14 @@
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/categories/%E7%9F%AD%E8%A7%86%E9%A2%91%E6%96%87%E6%91%98/</loc>
+    <loc>https://qzwangustc.github.io/categories/Linux/</loc>
+    <lastmod>2020-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://qzwangustc.github.io/categories/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -209,14 +216,7 @@
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/categories/Linux/</loc>
-    <lastmod>2020-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://qzwangustc.github.io/categories/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <loc>https://qzwangustc.github.io/categories/%E7%9F%AD%E8%A7%86%E9%A2%91%E6%96%87%E6%91%98/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
