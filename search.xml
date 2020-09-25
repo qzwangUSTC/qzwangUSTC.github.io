@@ -4,33 +4,6 @@
   
     
     <entry>
-      <title>朱一旦：228</title>
-      <link href="/posts/7667.html"/>
-      <url>/posts/7667.html</url>
-      
-        <content type="html"><![CDATA[<p>“夜色在万千虫鸣中，突兀着她的寂静，而我在万家灯火中，吹灭了光明！祝我生日快乐，许愿孤独随风而去吧！”</p><blockquote><p>出自<a href="https://www.bilibili.com/video/BV1Ja4y1j7jT?from=search&amp;seid=18265083186797272904">朱一旦228</a></p></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 短视频文摘 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 朱一旦 </tag>
-            
-            <tag> 短视频文摘 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Docker学习笔记三</title>
       <link href="/posts/48969.html"/>
       <url>/posts/48969.html</url>
