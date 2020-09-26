@@ -4,8 +4,8 @@
 
 <head><link rel=manifest href=/manifest.json>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux">
-    <meta name="description" content="这是我的第四篇Linux学习笔记">
+    <meta name="keywords" content="Docker Linux GPU">
+    <meta name="description" content="如何使用学院共享GPU集群！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="white"/>
-    <title>Linux学习笔记四 | qzwangUSTC</title>
+    <title>USTC信息学院GPU集群使用指南 | qzwangUSTC</title>
     <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/apple-touch-icon.png">
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/favicon.ico">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/libs/awesome/css/font-awesome.min.css">
@@ -354,12 +354,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux学习笔记四</h1>
+                    <h1 class="description center-align post-title">USTC信息学院GPU集群使用指南</h1>
                 </div>
             </div>
         </div>
@@ -475,8 +475,16 @@
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
+                                </a>
+                            
                                 <a href="/tags/Linux/">
                                     <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/GPU/">
+                                    <span class="chip bg-color">GPU</span>
                                 </a>
                             
                         </div>
@@ -487,8 +495,8 @@
                         <div class="post-cate">
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                                <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                                <a href="/categories/USTC/" class="post-category">
+                                    USTC
                                 </a>
                             
                         </div>
@@ -500,21 +508,21 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                        2020-09-08
+                        2020-09-25
                     </div>
                 
 
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2020-09-09
+                        2020-09-26
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.3k
+                        1.3k
                     </div>
                 
 
@@ -526,194 +534,89 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Vim编辑器"><a href="#Vim编辑器" class="headerlink" title="Vim编辑器"></a>Vim编辑器</h3><blockquote>
-<p>什么是Vim编辑器    </p>
-</blockquote>
-<p>vim通过一些插件可以实现和IDE一样的功能！  </p>
-<p>vim是从vi发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。尤其是Linux中，必须要会使用Vim（<strong>查看内容，编辑内容，保存内容！</strong>）  </p>
-<p>简单的说，vi是老式的字处理器，不过功能已经很齐全了，但是还是有可以进步的地方。</p>
-<p>vim则可以说是程序开发者的一项很好用的工具。</p>
-<p>所有的Unix Like系统都会有vi文本编辑器，其他的文本编辑器则不一定存在。  </p>
-<p>连 vim 的官方网站 (<a href="http://www.vim.org">http://www.vim.org</a>) 自己也说 vim 是一个程序开发工具而不是文字处理软件。 </p>
-<p>vim 键盘图<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200908170626.png" alt=""></p>
-<blockquote>
-<p>三种使用模式    </p>
-</blockquote>
-<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200908172407.png" alt="">  </p>
-<p>基本上 vi/vim 共分为三种模式，分别是<strong>命令模式（Command mode）</strong>，<strong>输入模式（Insert mode）</strong>和<strong>底线命令模式（Last line mode）</strong>。这三种模式的作用分别是：</p>
-<p>用户刚刚启动 vi/vim，便进入了命令模式。 </p>
-<p>balabala…  </p>
-<p><strong>用Vim打开一个文件，如果文件存在，则编辑文件；如果不存在，则创建一个文件。</strong>  </p>
-<p><strong>想要记住的操作：</strong>   </p>
-<ul>
-<li>上下左右移动光标  </li>
-<li>数字<space> 光标横向移动或 数字<enter>光标纵向移动  </enter></space></li>
-<li>/word, ?word, n, N 搜索替换 </li>
-<li>u, 重复动作  </li>
-<li>:wq 保存退出 </li>
-<li>:set nu 设置行号，代码中经常使用  </li>
+                <p><a href="http://mccipc.ustc.edu.cn/mediawiki/index.php/Main_Page">官网</a></p>
+<p>个人感觉官网上给的使用手册门槛比较高，所以打算写这篇博客，记录自己在学院GPU集群上构建深度学习环境的流程，供需要的人参考。</p>
+<h1 id="使用指南"><a href="#使用指南" class="headerlink" title="使用指南"></a>使用指南</h1><h2 id="适用对象"><a href="#适用对象" class="headerlink" title="适用对象"></a>适用对象</h2><ul>
+<li>USTC信息学院学生</li>
+<li>想做深度学习相关方面的工作，对计算资源有需求的同学。</li>
 </ul>
-<p>以上掌握熟练即可，其余的了解或者自己测一测即可，我们平时使用VIM最多的就是修改下文件内容而已！ </p>
-<h3 id="账号管理"><a href="#账号管理" class="headerlink" title="账号管理"></a>账号管理</h3><blockquote>
-<p>简介 </p>
-</blockquote>
-<p>Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户，都必须首先系统管理员申请一个账号，然后以这个账号的身份进入系统。  </p>
-<p>用户的账号一方面可以帮助系统管理员对使用系统的用户进行追踪，并控制他们对系统资源的访问；另一方面也可以帮助用户组织文件，并为用户提供安全性保护。   </p>
-<p>每个用户账号都拥有一个唯一的用户名和各自的口令。  </p>
-<p>用户在登录时键入正确的用户名和口令后，就能够进入系统和自己的主目录。 </p>
-<p>实现用户账号的管理，要完成的工作主要有如下几个方面： </p>
-<ul>
-<li>用户账号的添加、删除与修改  </li>
-<li>用户口令的管理   </li>
-<li>用户组的管理  </li>
+<h2 id="使用要求"><a href="#使用要求" class="headerlink" title="使用要求"></a>使用要求</h2><ul>
+<li>熟悉Linux基本命令</li>
+<li>了解Docker的概念和基本使用方法   </li>
 </ul>
 <blockquote>
-<p>用户账号的管理  </p>
+<p><a href="https://qzwangustc.github.io/posts/37102.html">Linux学习笔记一</a><br><a href="https://qzwangustc.github.io/posts/20554.html">Linux学习笔记二</a><br><a href="https://qzwangustc.github.io/posts/49384.html">Linux学习笔记三</a><br><a href="https://qzwangustc.github.io/posts/22036.html">Linux学习笔记四</a><br><a href="https://qzwangustc.github.io/posts/61265.html">Docker学习笔记一</a><br><a href="https://qzwangustc.github.io/posts/4053.html">Docker学习笔记二</a><br><a href="https://qzwangustc.github.io/posts/48969.html">Docker学习笔记三</a></p>
 </blockquote>
-<p>用户账号的管理工作主要涉及到用户账号的添加、修改和删除。  </p>
-<p>添加用户账号就是在系统中创建一个新账号，然后为新账号分配用户号、用户组、主目录和登录Shell等资源。 </p>
+<p>对Linux和Docker零基础的同学可以看一下上面我之前写的博客，内容不是很多，很快就可以看完，每个博客最下面有对应的视频课链接。 </p>
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><h3 id="申请账号"><a href="#申请账号" class="headerlink" title="申请账号"></a>申请账号</h3><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200925230017.png" alt=""><br>按照网站所给的方式申请，通过后，加入GPU使用微信群。</p>
+<h3 id="登录GPU集群"><a href="#登录GPU集群" class="headerlink" title="登录GPU集群"></a>登录GPU集群</h3><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200925230425.png" alt=""><br>按照网站给出的方式操作过程如下：  </p>
+<p>打开xshell，新建会话，名称任意，输入ip地址和端口号，确定。  </p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200925231537.png" alt=""> </p>
+<p>双击刚才建立的会话，按照提示输入用户名和密码。<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200925231914.png" alt="">  </p>
+<p>成功登陆后，进入gwork平台。</p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200925232305.png" alt="">  </p>
 <blockquote>
-<p>（root）添加账号useradd   </p>
+<p>这里先说一下，主要会用到里面的两个平台：</p>
 </blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">useradd</span> -选项 用户名  <span class="token comment" spellcheck="true">#其他选项看微信公众号   </span>
-        -m 自动创建用户的主目录 /home/<span class="token punctuation">..</span>.  
-        -G 添加用户组<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>理解一下本质：Linux中一切皆文件，这里的添加用户说白了就是往某一个文件中写入用户的信息了！  </p>
-<p>增加用户账号就是在/etc/passwd文件中为新用户增加一条记录，同时更新其他系统文件，如: /etc/shadow, /etc/group等。</p>
-<blockquote>
-<p>删除用户 userdel </p>
-</blockquote>
-<p>userdel -r 用户名  删除用户的时候将它的目录一块删掉   </p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls </span>
-kuangshen  qzwang  test.txt
-<span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># userdel -r qzwang</span>
-<span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls </span>
-kuangshen  test.txt
-<span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>修改用户 usermod   </p>
-</blockquote>
-<p>usermod 对应修改的内容 修改那个用户  </p>
-<p>修改完毕后查看配置文件即可！  </p>
-<blockquote>
-<p>切换用户！  </p>
-</blockquote>
-<p>root用户<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200908220650.png" alt=""></p>
-<p>普通用户<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200908221400.png" alt=""></p>
-<p><strong>临时查看、更改主机名：hostname、hostname 主机名</strong>  </p>
-<blockquote>
-<p>用户的密码设置问题！ </p>
-</blockquote>
-<p>我们一般通过root创建用户的时候！要配置密码！ </p>
-<p><strong>Linux上输入密码是不会显示的，并不是程序的问题</strong>   </p>
-<p>在公司中，一般拿不到公司的root权限，都是一些分配的账号！  </p>
-<p>如果是超级用户： </p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">passwd</span> username:
-new password:
-re password:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>如果是普通用户： </p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">passwd</span> 
-<span class="token punctuation">(</span>current<span class="token punctuation">)</span> UNIX password: 
-new password: 
-re password:  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>锁定账户   </p>
-</blockquote>
-<p>root，比如张三辞职了！冻结这个账号，一旦冻结，这个人就登录不上系统了！  </p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">passwd</span> -l 用户名  <span class="token comment" spellcheck="true">#锁定之后这个用户就不能登录了！  </span>
-<span class="token function">passwd</span> -d 用户名  <span class="token comment" spellcheck="true">#没有密码也不能登录！  </span>
-<span class="token function">passwd</span> -u 用户名  <span class="token comment" spellcheck="true">#解锁  </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>这以上的基本的命令，大家必须要掌握！但是自己玩的时候可以使用来学习！Linux是一个多用户的系统！</p>
-<h3 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h3><p>属主、属组  </p>
-<p>每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理（开发，测试，运维，root）。不同Linux系统对用户组的规定有所不同，如Linux下的用户属于与它同名的用户组，这个用户组在创建用户时同时创建。  </p>
-<p>用户组的管理涉及用户组的添加、删除和修改。<strong>组的增加、删除和修改实际上就是对/etc/group文件的更新。</strong>    </p>
-<blockquote>
-<p>创建一个用户组 groupadd  </p>
-</blockquote>
-<p>创建完用户组后可以得到一个组的id，这个id时可以指定的！<strong>-g 520</strong>，如果不指定就是自增1   </p>
-<blockquote>
-<p>删除用户组 groupdel </p>
-</blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># groupdel qzwang2</span>
-<span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /etc/group</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<blockquote>
-<p>修改用户组的权限信息和名字 groupmod -g -n  </p>
-</blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># groupmod -g 520 -n qzwang2 qzwang </span>
-<span class="token punctuation">[</span>root@localhost home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /etc/group</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<blockquote>
-<p>用户如果要切换用户组怎么办？ </p>
-</blockquote>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 登录当前用户  qzwang </span>
-$ newgrp root  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<blockquote>
-<p>拓展：文件的查看！（了解即可）  </p>
-</blockquote>
-<p>/etc/passwd  </p>
-<p><strong>用户名:口令（登录密码）:用户标识号:组标识号:注释性描述:主目录:登录Shell</strong>     </p>
-<p>这个文件中的每一行都代表一个用户，我们可以看到这个用户的主目录在哪，可以看到属于哪一个组！  </p>
-<p><strong>登录口令：真正的加密后的用户口令字存放到/etc/shadow文件中，保证密码的安全性</strong>   </p>
-<p>用户组的所有信息都存放在/etc/group文件中。  </p>
-<h3 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h3><blockquote>
-<p>df（列出文件系统整体的磁盘使用量）  du （检查磁盘空间使用量）   </p>
-</blockquote>
-<p>df!<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200909093527.png" alt="">   </p>
-<p>du!  (进入到某一个文件夹)   </p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">du</span>   
-<span class="token function">du</span> -a -h   <span class="token comment" spellcheck="true">#查看隐藏文件，按照M或G显示大小</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200909094808.png" alt="">  </p>
-<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200909095024.png" alt="">  </p>
-<blockquote>
-<p>Mac或者想使用Linux挂载我们的一些本底磁盘或者文件    </p>
-</blockquote>
-<p>mount : 挂载<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200909095605.png" alt="">   </p>
-<p>umount -f [挂载位置] 强制卸载   </p>
-<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>Linux中一切皆文件<br><strong>（文件：读写执行（查看，创建，删除，移动，复制，编辑），权限（用户、用户组）。系统：（磁盘，进程））</strong></p>
-<p>对用我们开发人员来说，其实Linux更多偏向于使用即可！   </p>
-<blockquote>
-<p>基本概念！什么时进程？  </p>
-</blockquote>
-<ol>
-<li>在Linux中，每一个程序都是有自己的一个进程，每一个进程都有一个id号！</li>
-<li>每一个进程，都会有一个父进程！ </li>
-<li>进程可以有两种存在方式：前台！后台运行！</li>
-<li>一般的话服务都是都是后台运行的，基本的程序都是前台运行的！  </li>
-</ol>
-<blockquote>
-<p>命令  </p>
-</blockquote>
-<p><strong>ps:</strong>查看当前系统中正在执行的各种进程信息！<br>ps-xx ：</p>
 <ul>
-<li>-a ：显示当前终端运行的进程信息（当前的进程）</li>
-<li>-u ：以用户的信息显示进程 </li>
-<li>-x ：显示后台运行进程的参数！ </li>
+<li>gwork：操作控制台</li>
+<li>G101： 用于调试代码</li>
 </ul>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># ps -aux 查看所有的进程  </span>
-<span class="token function">ps</span> -aux<span class="token operator">|</span><span class="token function">grep</span> mysql
-<span class="token function">ps</span> -aux<span class="token operator">|</span><span class="token function">grep</span> redis
-
-<span class="token comment" spellcheck="true"># | 在Linux这个叫做管道符   A|B</span>
-<span class="token comment" spellcheck="true"># grep 查找文件中符合条件的字符串！  </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>对于我们来说，这里目前只需要记住一个命令即可 ps-xx|grep 进程名字！ 过滤进程信息！  </p>
-<p><strong>ps -ef ：可以查看到父进程的信息</strong>  </p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ps</span> -ef<span class="token operator">|</span><span class="token function">grep</span> mysql <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>看父进程我们一般可以通过进程树结构来查看！  </p>
-<pre class="line-numbers language-bash"><code class="language-bash">pstree  
-    -p 显示父id  
-    -u 显示用户组   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>结束进程：杀掉进程，等价于Windows结束任务！   </p>
-<p>kill -9 进程的id  </p>
-<p>但是啊，我们平时写的一个Java代码死循环了，可以选择结束进程！杀进程  </p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">kill</span> -9 进程的id  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>表示强制结束该进程！  </p>
-<h3 id="扩展：Vmware使用"><a href="#扩展：Vmware使用" class="headerlink" title="扩展：Vmware使用"></a>扩展：Vmware使用</h3><p>很多小伙伴，比较吝啬，买不起70一年的服务器！Vmware本地安装包！   </p>
-<h4 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h4><p>保留当前系统信息为快照，随时可以恢复，以防未来系统被你玩坏，就好比游戏中的归档！   </p>
-<p>平时的话，我们每配置一个东西就可以拍摄一个快照，保留信息！  </p>
-<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200909110523.png" alt="">  </p>
-<h4 id="本地网络配置"><a href="#本地网络配置" class="headerlink" title="本地网络配置"></a>本地网络配置</h4><p>*具体看狂神的视频，有点音画不同步。  *</p>
+<h3 id="浏览一下GPU集群部署概况"><a href="#浏览一下GPU集群部署概况" class="headerlink" title="浏览一下GPU集群部署概况"></a>浏览一下GPU集群部署概况</h3><p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200925233046.png" alt="">   </p>
+<p>网站上有详细的关于GPU整体情况介绍。   </p>
+<h3 id="测试G101平台"><a href="#测试G101平台" class="headerlink" title="测试G101平台"></a>测试G101平台</h3><p>现在没有代码没关系，先进G101测试一波，熟悉一下流程。  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ssh</span> G101         <span class="token comment" spellcheck="true"># 进入G101命令</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200925233648.png" alt="">  </p>
+<p>查看一下你在G101中能使用到的命令 </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200925234536.png" alt="">  </p>
+<p>查看G101上已有的镜像有哪些：  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> docker images<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200925235026.png" alt=""> </p>
+<p>随便开一个Docker容器测试，以bit:5000/deepo镜像为例，可以看到容器里面就是专门给你分配的一个Linux，在容器内可以执行ls、pwd等命令；bit:5000/deepo 是一个深度学习Docker镜像，里面装了一些主流的深度学习框架Tensorflow、Pytorch等。   </p>
+<pre class="line-numbers language-bash"><code class="language-bash">startdocker -u <span class="token string">"-it"</span> -c /bin/bash bit:5000/deepo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200925235919.png" alt=""><br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926085902.png" alt="">  </p>
+<p>在容器内部测试完毕后，退出容器，回到G101工作台：  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token keyword">exit</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926090119.png" alt="">  </p>
+<p>然后查看刚开的容器是否还在后台运行，如果是的话，需要自己手动停掉。如果你看过Docker的话，这个应该没有问题： </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> docker <span class="token function">ps</span>                     <span class="token comment" spellcheck="true"># 查看当前正在运行的容器</span>
+<span class="token function">sudo</span> docker <span class="token function">ps</span> -a                  <span class="token comment" spellcheck="true"># 查看所有已创建的容器</span>
+<span class="token function">sudo</span> docker start 容器名字/id       <span class="token comment" spellcheck="true"># 启动已停止的容器  </span>
+<span class="token function">sudo</span> docker stop 容器名字/id        <span class="token comment" spellcheck="true"># 停止正在运行的容器</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="制作自己的镜像"><a href="#制作自己的镜像" class="headerlink" title="制作自己的镜像"></a>制作自己的镜像</h3><p>首先应该到<a href="http://mccipc.ustc.edu.cn/mediawiki/index.php/Docker-images">这里</a>查看集群上已有的镜像有哪些，是否有符合自己需求的镜像，如果有的话，不需要制作，跳过这一小节。网站给出的制作方式：<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926091520.png" alt="">  </p>
+<p>制作镜像的流程： </p>
 <blockquote>
-<p>参考 <a href="https://mp.weixin.qq.com/s?__biz=Mzg2NTAzMTExNg==&amp;mid=2247483895&amp;idx=1&amp;sn=b685934ee0d08b9d01cc0c35ed7fed71&amp;scene=19#wechat_redirect">狂神学Java</a></p>
+<p>1、 在微信群内向管理员申请开一个有root权限的容器，用于测试并记录后面写Dockerfile所需要的步骤。基础镜像最好选择网站上推荐的：   </p>
 </blockquote>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926092547.png" alt=""><br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926092637.png" alt="">   </p>
+<blockquote>
+<p>2、进入G101平台，进入刚刚申请通过有root权限的容器。一边在容器里面测试，一边做记录，形成Dockerfile文件 </p>
+</blockquote>
+<p>进入G101平台，进入刚刚申请通过有root权限的容器</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ssh</span> G101 
+<span class="token function">sudo</span> docker <span class="token function">exec</span> -it <span class="token operator">&lt;</span>容器名<span class="token operator">></span> /bin/bash        <span class="token comment" spellcheck="true"># 退出时不会影响容器状态 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926094043.png" alt="">  </p>
+<p>在xshell中新开一个选项可卡，并将选项卡垂直排列。在新选项卡中，进入我的Dockerfile文件所在目录，查看一下我的Dockerfile文件内容  </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> /gdata1/wangqz/Images 
+<span class="token function">cat</span> Dockerfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926095643.png" alt=""> </p>
+<p>我的Dokcerfile文件主要是根据翟师兄的文件改的，里面的uid获取：直接在gwork平台用id命令查询：<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926105350.png" alt=""><br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926101106.png" alt="">  </p>
+<p>在容器中测试并记录，如果没有一路下来不报错，便可将你记录的步骤整理成Dockerfile文件。<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926101650.png" alt="">  </p>
+<blockquote>
+<p>3、在微信群内向管理员申请build成镜像   </p>
+</blockquote>
+<blockquote>
+<p>4、在G101上测试你的镜像，如果没有问题的话，请管理员把镜像上传至集群私有库。  </p>
+</blockquote>
+<h3 id="写pbs文件，提交job"><a href="#写pbs文件，提交job" class="headerlink" title="写pbs文件，提交job"></a>写pbs文件，提交job</h3><p>改改网站上给出的pbs文件实例就能用了，需要改动的已用红框标出。需要说明的是编辑pbs脚本时要使用linux上的编辑器，如vim、vi等，用Windows上的编辑器会提交job时会报错。<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926103043.png" alt="">    </p>
+<p>关于最后一条命令，网站上已说的很详细<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926103747.png" alt=""> </p>
+<p>挂载代码和数据集时，我用的是扩展参数-u，这个主要还是要看你自己的文件目录是怎样的。下面我把我自己的工程文件目录和pbs文件内容贴出来以供参考：<br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926104706.png" alt="">    </p>
+<p>我的shell脚本写的很简单，就是进入容器后把工作目录切换成代码所在目录，然后执行代码。<em>需要注意的是需要给shell脚本文件增加执行权限。</em><br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926110039.png" alt="">  </p>
+<p>在提交job之前，看一下当前集群上GPU卡的使用情况。  </p>
+<pre class="line-numbers language-bash"><code class="language-bash">chk_gpu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926110723.png" alt=""><br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926111004.png" alt="">   </p>
+<p>提交job以及后面的管理job，网站上写的很详细了，就不再说了。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -758,7 +661,7 @@ $ newgrp root  <span aria-hidden="true" class="line-numbers-rows"><span></span><
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://qzwangUSTC.github.io/posts/22036.html">https://qzwangUSTC.github.io/posts/22036.html</a>
+                    <a href="https://qzwangUSTC.github.io/posts/63066.html">https://qzwangUSTC.github.io/posts/63066.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -797,8 +700,16 @@ $ newgrp root  <span aria-hidden="true" class="line-numbers-rows"><span></span><
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
+                                </a>
+                            
                                 <a href="/tags/Linux/">
                                     <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/GPU/">
+                                    <span class="chip bg-color">GPU</span>
                                 </a>
                             
                         </div>
@@ -874,50 +785,56 @@ $ newgrp root  <span aria-hidden="true" class="line-numbers-rows"><span></span><
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-            <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
                 <div class="article-badge left-badge text-color">
-                    <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                    <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+                </div>
                 <div class="card">
-                    <a href="/posts/35327.html">
+                    <a href="/posts/63066.html">
                         <div class="card-image">
                             
                                 
-                                <img src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="服务器购买及宝塔部署环境说明">
+                                <img src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="USTC信息学院GPU集群使用指南">
                             
-                            <span class="card-title">服务器购买及宝塔部署环境说明</span>
+                            <span class="card-title">USTC信息学院GPU集群使用指南</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                服务器购买及宝塔部署环境说明
+                                如何使用学院共享GPU集群！
                             
                         </div>
                         <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-25
+                            </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                                     
-                                        <a href="/categories/%E9%98%BF%E9%87%8C%E4%BA%91/" class="post-category">
-                                    阿里云
+                                        <a href="/categories/USTC/" class="post-category">
+                                    USTC
                                 </a>
                                     
                                 
                             </span>
                         </div>
                     </div>
+
                     
                         <div class="card-action article-tags">
+                            
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
+                                </a>
                             
                                 <a href="/tags/Linux/">
                                     <span class="chip bg-color">Linux</span>
                                 </a>
                             
-                                <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">
-                                    <span class="chip bg-color">阿里云</span>
+                                <a href="/tags/GPU/">
+                                    <span class="chip bg-color">GPU</span>
                                 </a>
                             
                         </div>
@@ -931,31 +848,31 @@ $ newgrp root  <span aria-hidden="true" class="line-numbers-rows"><span></span><
                     下一篇&nbsp;<i class="fa fa-chevron-right"></i>
                 </div>
                 <div class="card">
-                    <a href="/posts/49384.html">
+                    <a href="/posts/48969.html">
                         <div class="card-image">
                             
                                 
-                                <img src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/featureimages/15.jpg" class="responsive-img" alt="Linux学习笔记三">
+                                <img src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="Docker学习笔记三">
                             
-                            <span class="card-title">Linux学习笔记三</span>
+                            <span class="card-title">Docker学习笔记三</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                这是我的第三篇Linux学习笔记
+                                这是我的第三篇Docker习笔记
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-07
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-12
                             </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                                     
-                                        <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                                        <a href="/categories/Docker/" class="post-category">
+                                    Docker
                                 </a>
                                     
                                 
@@ -964,6 +881,10 @@ $ newgrp root  <span aria-hidden="true" class="line-numbers-rows"><span></span><
                     </div>
                     
                         <div class="card-action article-tags">
+                            
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
+                                </a>
                             
                                 <a href="/tags/Linux/">
                                     <span class="chip bg-color">Linux</span>
