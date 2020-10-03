@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://qzwangustc.github.io/posts/41570.html</loc>
+    
+    <lastmod>2020-10-03</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://qzwangustc.github.io/posts/63066.html</loc>
     
     <lastmod>2020-09-26</lastmod>
@@ -65,13 +72,6 @@
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/posts/41570.html</loc>
-    
-    <lastmod>2020-09-05</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://qzwangustc.github.io/contact/index.html</loc>
     
     <lastmod>2020-09-05</lastmod>
@@ -130,6 +130,13 @@
 
   
   <url>
+    <loc>https://qzwangustc.github.io/tags/Docker/</loc>
+    <lastmod>2020-10-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://qzwangustc.github.io/tags/Linux/</loc>
     <lastmod>2020-10-03</lastmod>
     <changefreq>daily</changefreq>
@@ -137,7 +144,14 @@
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/tags/Docker/</loc>
+    <loc>https://qzwangustc.github.io/tags/GPU/</loc>
+    <lastmod>2020-10-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://qzwangustc.github.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
     <lastmod>2020-10-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -164,28 +178,7 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://qzwangustc.github.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2020-10-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://qzwangustc.github.io/tags/GPU/</loc>
-    <lastmod>2020-10-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
-  
-  <url>
-    <loc>https://qzwangustc.github.io/categories/Linux/</loc>
-    <lastmod>2020-10-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
   <url>
     <loc>https://qzwangustc.github.io/categories/Docker/</loc>
@@ -195,7 +188,14 @@
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/categories/Hexo/</loc>
+    <loc>https://qzwangustc.github.io/categories/Linux/</loc>
+    <lastmod>2020-10-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://qzwangustc.github.io/categories/USTC/</loc>
     <lastmod>2020-10-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -209,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://qzwangustc.github.io/categories/USTC/</loc>
+    <loc>https://qzwangustc.github.io/categories/Hexo/</loc>
     <lastmod>2020-10-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
