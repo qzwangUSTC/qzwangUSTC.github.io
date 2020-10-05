@@ -617,7 +617,25 @@
 <pre class="line-numbers language-bash"><code class="language-bash">chk_gpu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926110723.png" alt=""><br><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200926111004.png" alt="">   </p>
 <p>提交job以及后面的管理job，网站上写的很详细了，就不再说了。</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1073,7 +1091,7 @@
             
                 
                     &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                            class="white-color">16.8k</span>&nbsp;字
+                            class="white-color">17.3k</span>&nbsp;字
                 
                 
                 <script>
@@ -1259,7 +1277,7 @@
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1601732977017')
+  navigator.serviceWorker.register('/sw.js?t=1601868229332')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

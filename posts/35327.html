@@ -518,7 +518,7 @@
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        250
+                        302
                     </div>
                 
 
@@ -555,7 +555,25 @@
 <p>MySQL:3306, tomcat:8080等等。</p>
 <p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200910102847.png" alt=""></p>
 <p>2、获取服务器的公网ip地址：修改实例名名称和密码，第一次修改需要重启，使用xshell远程连接       </p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -997,7 +1015,7 @@
             
                 
                     &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                            class="white-color">16.8k</span>&nbsp;字
+                            class="white-color">17.3k</span>&nbsp;字
                 
                 
                 <script>
@@ -1183,7 +1201,7 @@
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1601732977017')
+  navigator.serviceWorker.register('/sw.js?t=1601868229332')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

@@ -518,7 +518,7 @@
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        4.9k
+                        5k
                     </div>
                 
 
@@ -1022,7 +1022,25 @@ An image does not exist locally with the tag: qzwangustc/diytomcat
 <blockquote>
 <p>参考：<a href="https://www.bilibili.com/video/BV1og4y1q7M4?p=18">狂神说Java</a></p>
 </blockquote>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1472,7 +1490,7 @@ An image does not exist locally with the tag: qzwangustc/diytomcat
             
                 
                     &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                            class="white-color">16.8k</span>&nbsp;字
+                            class="white-color">17.3k</span>&nbsp;字
                 
                 
                 <script>
@@ -1658,7 +1676,7 @@ An image does not exist locally with the tag: qzwangustc/diytomcat
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1601732977017')
+  navigator.serviceWorker.register('/sw.js?t=1601868229332')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

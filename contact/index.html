@@ -371,8 +371,8 @@
 
     <script>
         // 每天切换 banner 图.  Switch banner image every day.
-        // $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/banner/6.jpg)');
-        $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/banner/5.jpg)');
+        // $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/banner/1.jpg)');
+        $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/banner/6.jpg)');
     </script>
 
     </div>
@@ -387,7 +387,25 @@
                 </div>
                 <h2 id="畅所欲言"><a href="#畅所欲言" class="headerlink" title="畅所欲言"></a>畅所欲言</h2><hr>
 <p>在这里可以留下你的足迹，欢迎在下方留言，欢迎交换友链，一起交流学习！</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
         </div>
         <div class="card">
@@ -458,7 +476,7 @@
             
                 
                     &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                            class="white-color">16.8k</span>&nbsp;字
+                            class="white-color">17.3k</span>&nbsp;字
                 
                 
                 <script>
@@ -644,7 +662,7 @@
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1601732977017')
+  navigator.serviceWorker.register('/sw.js?t=1601868229332')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
