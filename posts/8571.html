@@ -4,8 +4,8 @@
 
 <head><link rel=manifest href=/manifest.json>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux">
-    <meta name="description" content="这是我的第一篇Linux学习笔记">
+    <meta name="keywords" content="LaTex Beamer PPT">
+    <meta name="description" content="使用LaTex文档类beamer制作学术报告演示文稿">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="white"/>
-    <title>Linux学习笔记一 | qzwangUSTC</title>
+    <title>如何使用LaTex制作演示文稿 | qzwangUSTC</title>
     <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/apple-touch-icon.png">
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/favicon.ico">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/libs/awesome/css/font-awesome.min.css">
@@ -359,7 +359,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux学习笔记一</h1>
+                    <h1 class="description center-align post-title">如何使用LaTex制作演示文稿</h1>
                 </div>
             </div>
         </div>
@@ -475,8 +475,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/LaTex/">
+                                    <span class="chip bg-color">LaTex</span>
+                                </a>
+                            
+                                <a href="/tags/Beamer/">
+                                    <span class="chip bg-color">Beamer</span>
+                                </a>
+                            
+                                <a href="/tags/PPT/">
+                                    <span class="chip bg-color">PPT</span>
                                 </a>
                             
                         </div>
@@ -487,8 +495,8 @@
                         <div class="post-cate">
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                                <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                                <a href="/categories/LaTex/" class="post-category">
+                                    LaTex
                                 </a>
                             
                         </div>
@@ -500,21 +508,21 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                        2020-09-07
+                        2020-10-17
                     </div>
                 
 
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2020-09-07
+                        2020-10-18
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        625
+                        490
                     </div>
                 
 
@@ -526,41 +534,82 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><em>Linux 一切皆文件：文件就读、写、（权限）</em><br><strong>基于CentOS 7版本</strong><br><strong>学习方式</strong>   </p>
-<ol>
-<li>认识Linux </li>
-<li>基本的命令（重点：文件操作、目录管理、文件属性、Vim编辑器、账号管理、磁盘管理…） </li>
-<li>软件的安装和部署！（java、tomcat、docker）   </li>
-</ol>
-<blockquote>
-<p>Linux简介 </p>
-</blockquote>
-<p>Linux 内核最初只是由芬兰人林纳斯·托瓦兹（Linus Torvalds）在赫尔辛基大学上学时出于个人爱好而编写的。</p>
-<p>Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX（可移植操作系统接口） 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。</p>
-<p>Linux 能运行主要的 UNIX 工具软件、应用程序和网络协议。它支持 32 位和 64 位硬件。Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。   </p>
-<blockquote>
-<p>Linux发行版 </p>
-</blockquote>
-<p>Linux 的发行版说简单点就是将 Linux 内核与应用软件做一个打包。  </p>
-<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20200907171301.png" alt=""> </p>
-<p>目前市面上较知名的发行版有：Ubuntu、RedHat、CentOS、Debian、Fedora、SuSE、OpenSUSE、Arch Linux、SolusOS 等。 </p>
-<blockquote>
-<p>Linux应用领域  </p>
-</blockquote>
-<p>今天各种场合都有使用各种 Linux 发行版，从嵌入式设备到超级计算机，并且在服务器领域确定了地位，通常服务器使用 LAMP（Linux + Apache + MySQL + PHP）或 LNMP（Linux + Nginx+ MySQL + PHP）组合。</p>
-<p>目前 Linux 不仅在家庭与企业中使用，并且在政府中也很受欢迎。</p>
-<ul>
-<li>巴西联邦政府由于支持 Linux 而世界闻名。</li>
-<li>有新闻报道俄罗斯军队自己制造的 Linux 发布版的，做为 G.H.ost 项目已经取得成果</li>
-<li>印度的 Kerala 联邦计划在向全联邦的高中推广使用 Linux</li>
-<li>中华人民共和国为取得技术独立，在龙芯处理器中排他性地使用 Linux。</li>
-<li>在西班牙的一些地区开发了自己的 Linux 发布版，并且在政府与教育领域广泛使用，如 Extremadura 地区的 gnuLinEx 和 Andalusia 地区的 Guadalinex。</li>
-<li>葡萄牙同样使用自己的 Linux 发布版 Caixa Mágica，用于 Magalh?es 笔记本电脑和 e-escola 政府软件。</li>
-<li>法国和德国同样开始逐步采用 Linux。</li>
-</ul>
-<blockquote>
-<p>参考：<a href="https://mp.weixin.qq.com/s?__biz=Mzg2NTAzMTExNg==&amp;mid=2247483879&amp;idx=1&amp;sn=96181b566c35679e48db6bd26fb59a2c&amp;scene=19#wechat_redirect">狂神说Java系列</a></p>
-</blockquote>
+                <p>近期需要实验室内部学术交流，一直苦于无法做一个适合PPT。之前听师兄提到过使用LaTex也可以做演示文稿，所以我决定尝试一下，写篇博客做个记录。</p>
+<h2 id="beamer是什么"><a href="#beamer是什么" class="headerlink" title="beamer是什么"></a>beamer是什么</h2><p>无论是使用PowerPoint还是WPS制作演示文稿，最大的痛点莫过于排版问题，而LaTex把排版的问题交给了底层的编译器，能够让创作者把更多的精力放在内容上面，而不是格式上面。</p>
+<p>beamer是LaTex中的一个专门制作演示文稿的文档类。使用beamer能够快速地制作一个简洁、美观的演示文稿，非常适合于学术报告。</p>
+<h2 id="我的beamer自定义模板"><a href="#我的beamer自定义模板" class="headerlink" title="我的beamer自定义模板"></a>我的beamer自定义模板</h2><pre class="line-numbers language-latex"><code class="language-latex"><span class="token function selector">\documentclass</span><span class="token punctuation">[</span>aspectratio=169<span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token keyword">beamer</span><span class="token punctuation">}</span>
+
+
+<span class="token comment" spellcheck="true">% ----------------宏包-----------------</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">{</span><span class="token keyword">ctex</span><span class="token punctuation">}</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">{</span><span class="token keyword">bookmark</span><span class="token punctuation">}</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">{</span><span class="token keyword">booktabs</span><span class="token punctuation">}</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">{</span><span class="token keyword">graphicx</span><span class="token punctuation">}</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">{</span><span class="token keyword">subfigure</span><span class="token punctuation">}</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">{</span><span class="token keyword">multicol</span><span class="token punctuation">}</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">{</span><span class="token keyword">arev</span><span class="token punctuation">}</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">{</span><span class="token keyword">hyperref</span><span class="token punctuation">}</span>
+
+
+<span class="token comment" spellcheck="true">% --------------主题------------------</span>
+<span class="token function selector">\usecolortheme</span><span class="token punctuation">{</span>rose<span class="token punctuation">}</span>    
+
+<span class="token comment" spellcheck="true">% -------------修改主题---------------</span>
+<span class="token function selector">\setbeamertemplate</span><span class="token punctuation">{</span>navigation symbols<span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token punctuation">}</span>    <span class="token comment" spellcheck="true">% 不显示导航栏</span>
+<span class="token function selector">\useinnertheme</span><span class="token punctuation">{</span>default<span class="token punctuation">}</span>
+<span class="token function selector">\setbeamertemplate</span><span class="token punctuation">{</span>itemize items<span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token equation string">$<span class="token equation-command regex">\pencil</span>$</span><span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">% \setbeamercovered{transparent=7}   % 半透明效果</span>
+
+<span class="token function selector">\setbeamertemplate</span><span class="token punctuation">{</span>headline<span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">% 显示headline</span>
+<span class="token function selector">\setbeamertemplate</span><span class="token punctuation">{</span>footline<span class="token punctuation">}</span><span class="token punctuation">[</span>frame number<span class="token punctuation">]</span> <span class="token comment" spellcheck="true">% footline中只显示页码</span>
+
+<span class="token function selector">\definecolor</span><span class="token punctuation">{</span>mygray<span class="token punctuation">}</span><span class="token punctuation">{</span>RGB<span class="token punctuation">}</span><span class="token punctuation">{</span>245, 245, 245<span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">% rgb: 取值范围为[0, 1]; RGB: 取值范围为[0, 255]</span>
+<span class="token function selector">\definecolor</span><span class="token punctuation">{</span>mygreen<span class="token punctuation">}</span><span class="token punctuation">{</span>RGB<span class="token punctuation">}</span><span class="token punctuation">{</span>48, 128, 20<span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">% rgb: 取值范围为[0, 1]; RGB: 取值范围为[0, 255]</span>
+<span class="token function selector">\definecolor</span><span class="token punctuation">{</span>mydefault<span class="token punctuation">}</span><span class="token punctuation">{</span>rgb<span class="token punctuation">}</span><span class="token punctuation">{</span>0.2, 0.2, 0.7<span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">% rgb: 取值范围为[0, 1]; RGB: 取值范围为[0, 255]</span>
+
+<span class="token function selector">\setbeamercolor</span><span class="token punctuation">{</span>title<span class="token punctuation">}</span><span class="token punctuation">{</span>bg=mygray<span class="token punctuation">}</span>
+
+
+<span class="token comment" spellcheck="true">% ------------------------------------</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">document</span><span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">% \renewcommand\contentsname{目录}</span>
+<span class="token function selector">\title</span><span class="token punctuation">{</span>如何入门一场机器学习比赛<span class="token punctuation">}</span>
+<span class="token function selector">\subtitle</span><span class="token punctuation">{</span>————DIGIX 精英大赛总结<span class="token punctuation">}</span>
+<span class="token function selector">\author</span><span class="token punctuation">{</span>王钦正（研二上）<span class="token punctuation">}</span>
+<span class="token function selector">\date</span><span class="token punctuation">{</span>2020/10/16<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">% -------------标题页----------------</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">frame</span><span class="token punctuation">}</span><span class="token punctuation">[</span>plain<span class="token punctuation">]</span>
+    <span class="token function selector">\titlepage</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">frame</span><span class="token punctuation">}</span>
+
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">frame</span><span class="token punctuation">}</span><span class="token punctuation">{</span>目录<span class="token punctuation">}</span>
+    <span class="token function selector">\tableofcontents</span><span class="token punctuation">[</span>hideallsubsections<span class="token punctuation">]</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">frame</span><span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">% -------------------比赛意义----------------------</span>
+<span class="token function selector">\section</span><span class="token punctuation">{</span><span class="token headline class-name">比赛意义</span><span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">%  此处省略一万字</span>
+<span class="token comment" spellcheck="true">%  。。。。。。。</span>
+<span class="token comment" spellcheck="true">%  。。。。。。。</span>
+
+<span class="token comment" spellcheck="true">% ------------------前期准备-----------------------</span>
+<span class="token function selector">\section</span><span class="token punctuation">{</span><span class="token headline class-name">前期准备</span><span class="token punctuation">}</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">frame</span><span class="token punctuation">}</span><span class="token punctuation">{</span>目录<span class="token punctuation">}</span>
+    <span class="token function selector">\tableofcontents</span><span class="token punctuation">[</span>currentsection, hideothersubsections<span class="token punctuation">]</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">frame</span><span class="token punctuation">}</span>
+
+
+<span class="token comment" spellcheck="true">%  此处省略一万字</span>
+<span class="token comment" spellcheck="true">%  。。。。。。。</span>
+<span class="token comment" spellcheck="true">%  。。。。。。。</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">document</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p>标题</p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20201018001810.png" alt=""></p>
+<p>目录</p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20201018001951.png" alt=""></p>
+<p>正文</p>
+<p><img src="https://gitee.com/qzwangustc/blogimage/raw/master/img/20201018002028.png" alt="">  </p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -605,7 +654,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://qzwangUSTC.github.io/posts/37102.html">https://qzwangUSTC.github.io/posts/37102.html</a>
+                    <a href="https://qzwangUSTC.github.io/posts/8571.html">https://qzwangUSTC.github.io/posts/8571.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -644,8 +693,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/LaTex/">
+                                    <span class="chip bg-color">LaTex</span>
+                                </a>
+                            
+                                <a href="/tags/Beamer/">
+                                    <span class="chip bg-color">Beamer</span>
+                                </a>
+                            
+                                <a href="/tags/PPT/">
+                                    <span class="chip bg-color">PPT</span>
                                 </a>
                             
                         </div>
@@ -721,46 +778,56 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-            <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
                 <div class="article-badge left-badge text-color">
-                    <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                    <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+                </div>
                 <div class="card">
-                    <a href="/posts/20554.html">
+                    <a href="/posts/8571.html">
                         <div class="card-image">
                             
                                 
-                                <img src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/featureimages/2.jpg" class="responsive-img" alt="Linux学习笔记二">
+                                <img src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="如何使用LaTex制作演示文稿">
                             
-                            <span class="card-title">Linux学习笔记二</span>
+                            <span class="card-title">如何使用LaTex制作演示文稿</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                这是我的第二篇Linux学习笔记
+                                使用LaTex文档类beamer制作学术报告演示文稿
                             
                         </div>
                         <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-17
+                            </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                                     
-                                        <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                                        <a href="/categories/LaTex/" class="post-category">
+                                    LaTex
                                 </a>
                                     
                                 
                             </span>
                         </div>
                     </div>
+
                     
                         <div class="card-action article-tags">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/LaTex/">
+                                    <span class="chip bg-color">LaTex</span>
+                                </a>
+                            
+                                <a href="/tags/Beamer/">
+                                    <span class="chip bg-color">Beamer</span>
+                                </a>
+                            
+                                <a href="/tags/PPT/">
+                                    <span class="chip bg-color">PPT</span>
                                 </a>
                             
                         </div>
@@ -774,31 +841,31 @@
                     下一篇&nbsp;<i class="fa fa-chevron-right"></i>
                 </div>
                 <div class="card">
-                    <a href="/posts/4053.html">
+                    <a href="/posts/63066.html">
                         <div class="card-image">
                             
                                 
-                                <img src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="Docker学习笔记二">
+                                <img src="https://cdn.jsdelivr.net/gh/qzwangustc/qzwangustc.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="USTC信息学院GPU集群使用指南">
                             
-                            <span class="card-title">Docker学习笔记二</span>
+                            <span class="card-title">USTC信息学院GPU集群使用指南</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                这是我的第二篇Docker习笔记
+                                如何使用学院共享GPU集群！
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-25
                             </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                                     
-                                        <a href="/categories/Docker/" class="post-category">
-                                    Docker
+                                        <a href="/categories/USTC/" class="post-category">
+                                    USTC
                                 </a>
                                     
                                 
@@ -814,6 +881,10 @@
                             
                                 <a href="/tags/Docker/">
                                     <span class="chip bg-color">Docker</span>
+                                </a>
+                            
+                                <a href="/tags/GPU/">
+                                    <span class="chip bg-color">GPU</span>
                                 </a>
                             
                         </div>
